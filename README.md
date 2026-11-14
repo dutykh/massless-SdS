@@ -74,7 +74,7 @@ so that the raw frequencies Ω are not to be compared with ϖ directly.
 First, Maple assembles the three matrices `M0`, `M1` and `M2` of one case at each resolution: the worksheets
 `maple/Matrix_Assembler_*.mw` (see Contents) set the sector, the multipole ℓ, the cosmological constant and the
 resolutions, and write the matrices as ASCII files into the folder that the Julia solver reads, under the names it
-expects (the Nariai worksheet as saved last assembled N = 90, 95 and 100).
+expects (as saved, all four worksheets last assembled N = 90, 95 and 100).
 
 Second, the pencil is solved, in one of two ways. In Julia, `julia/QNMSdS_readable_output.jl` reads the matrices
 `M0-<N>-<tag>.mat`, `M1-<N>-<tag>.mat` and `M2-<N>-<tag>.mat`, the tag being 1000 Λ̃, linearises the pencil, solves it in
@@ -84,7 +84,7 @@ Second, the pencil is solved, in one of two ways. In Julia, `julia/QNMSdS_readab
 10⁻⁸ of an exact Pöschl–Teller frequency. Both Julia files set their parameters as constants near the top, to be
 edited before a run: the folder of the matrices `DATA_DIR` (a folder of the authors' computer by default), the
 resolutions `N_VALS` (90, 95 and 100 by default), the tag or the sector (`FILETAG`, `SPIN`, `ELL`) and the precision
-(matrices read with 50 digits, arithmetic with 70). In MATLAB with the Advanpix Multiprecision Computing Toolbox,
+(70 digits, the matrices coming from Maple with 50; the constant `FILE_DECIMAL_DIGITS` is not used). In MATLAB with the Advanpix Multiprecision Computing Toolbox,
 `matlab/chaseeigs.m` reads the resolutions from `resolutions.txt` and s, ℓ and Λ̃ from the first three lines of
 `params.txt` in the working folder, and the matrices from `assemble/M0_<N>.mat`, `assemble/M1_<N>.mat` and
 `assemble/M2_<N>.mat` (other names than those of the Julia solver, so the files are to be copied under these names);
@@ -130,6 +130,14 @@ hundred roots pass the three-resolution test, all on the imaginary axis and some
 tabulated modes is among their roots, so these tables too come from computations whose spectra are not stored.
 Finally, the folder `s0_L0_La0_11` holds a copy of the table of ℓ = 1 (`s0_L1_La0_11.txt`, identical to the one in
 `s0_L1_La0_11`), so that the table of the scalar monopole at Λ̃ = 0.11 is missing.
+
+An independent computation confirms the tables themselves. A collocation of the same equations written afresh (Gauss
+nodes, 90-digit arithmetic, N = 90, 95 and 100) finds every mode of the 19 tables at Λ̃ = 0.08 to 0.11 within its
+tabulated error (the largest offset is 3 × 10⁻⁵), so that only the stored spectra are faulty there, and it reproduces
+the three tables at Λ̃ = 0.02, their distances included, which therefore come from a run at N = 90, 95 and 100. For the
+scalar monopole at Λ̃ = 0.11 it retains 0.0020352 − 0.0189819i, 0.0038667 − 0.0380418i, 0.0054057 − 0.0571828i,
+0.0066629 − 0.0763740i and 0.0076830 − 0.0955908i; the missing table is rebuilt by running the assembler and the solver
+for ℓ = 0 and Λ̃ = 0.11.
 
 The tables of `data/extreme/` give the Nariai frequencies ϖ: `s_0_L_0.txt` (scalar, ℓ = 0, A_s = 0), `s_0_s_1_L_1.txt`
 (scalar or electromagnetic, ℓ = 1, A_s = 2), `s_2_L_2.txt` (gravitational, ℓ = 2, A_s = 4) and `S_2_L_3.txt`
