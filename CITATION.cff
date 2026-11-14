@@ -1,0 +1,44 @@
+# Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+cff-version: 1.2.0
+message: "If you use these codes or data, please cite this software as given below."
+title: "massless-SdS: quasinormal modes of Schwarzschild–de Sitter black holes and the Nariai limit"
+type: software
+authors:
+  - family-names: Batic
+    given-names: Davide
+    affiliation: "Khalifa University of Science and Technology"
+    orcid: "https://orcid.org/0000-0002-7619-4900"
+  - family-names: Chrysostomou
+    given-names: Anna
+    affiliation: "LPTHE, Sorbonne Université, CNRS"
+  - family-names: Cornell
+    given-names: Alan S.
+    affiliation: "University of Johannesburg"
+  - family-names: Dutykh
+    given-names: Denys
+    affiliation: "Khalifa University of Science and Technology"
+    orcid: "https://orcid.org/0000-0001-5247-2788"
+repository-code: "https://github.com/dutykh/massless-SdS"
+license: LGPL-2.1-only
+version: 1.0.0
+date-released: "2026-11-14"
+keywords:
+  - black-holes
+  - quasinormal-modes
+  - general-relativity
+  - de-sitter
+  - schwarzschild-black-hole
+  - spectral-methods
+  - chebyshev-polynomials
+  - maple
+  - julia
+  - matlab
+  - mathematica
+  - reproducible-research
+abstract: >-
+  Maple worksheets, MATLAB and Julia solvers, Mathematica notebooks and data for the quasinormal modes of massless
+  scalar, electromagnetic and gravitational perturbations of Schwarzschild–de Sitter black holes, for dimensionless
+  cosmological constants between 0.02 and 0.11, and of their Nariai limit. After the behaviour at the event and
+  cosmological horizons is factored out, a Chebyshev collocation turns the radial problem into a quadratic eigenvalue
+  problem, and only the roots on which three resolutions agree are kept; in the Nariai limit the computed frequencies
+  are compared with the exact Pöschl–Teller spectrum.
