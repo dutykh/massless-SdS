@@ -281,23 +281,26 @@ The numerical programs read the saved results of those before them, so each stud
 shows the order in which the whole chain runs.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph cont["Continuation towards Nariai"]
+    direction TB
     CN[continue_near_nariai] --> CJ[compare_jost_spectral]
     JC[jost_check] --> CJ
     JC --> JX[jost_extra_cell_check]
   end
   subgraph ds["Imaginary scalar branch"]
+    direction TB
     DC[ds_continuation] --> DE[ds_extend_continuation]
     DE --> DL[ds_low_lambda_continuation]
     DL --> LR[low_lambda_refinement]
   end
   subgraph res["Resolution and precision"]
+    direction TB
     DR[ds_reference_eigenfunction] --> B1[broad_resolution_study]
     B1 --> OR[offaxis_reference_eigenfunctions]
     OR --> B2["broad_resolution_study, again"]
     B2 --> IM[imaginary_multiprecision_newton]
-    IM --> HM["high_order_multiprecision, N = 240 and 300"]
+    IM --> HM["high_order_multiprecision<br/>N = 240 and 300"]
     B2 --> HB[high_order_binary64]
   end
   DE --> DR
