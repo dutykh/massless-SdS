@@ -27,8 +27,8 @@ imaginary scalar branch towards the Nariai limit, check three representative mod
 and polar gravitational spectra, compute the Schwarzschild column of the tables by Leaver's continued fraction, and
 verify the algebra of the paper exactly. The Julia solver of the Nariai problem now selects its modes by the same
 radiation test. The manuscript, "Quasinormal modes of Schwarzschild–de Sitter black holes: spectral branches and the
-Nariai limit", is included as `pdf/SCHWARZSCHILD_DE_SITTER_MASSLESS.pdf` in its version of 6 June 2026, before the
-revision; it has not been published, so the software itself is to be cited (see How to cite).
+Nariai limit", is included as `pdf/SCHWARZSCHILD_DE_SITTER_MASSLESS.pdf` in its revised version of 18 November 2026; it
+has not been published, so the software itself is to be cited (see How to cite).
 
 ## The problem
 
@@ -42,7 +42,7 @@ f d/dr( f dψ/dr ) + ( ω² − U(r) ) ψ = 0,      U(r) = f(r) ( ε f′(r)/r +
 ```
 
 Gravitational perturbations of odd parity replace U by the Regge–Wheeler potential, and those of even parity by the
-Zerilli-type potential of equation (6) of the manuscript:
+Zerilli-type potential of equation (8) of the manuscript:
 
 ```text
 V_odd(r) = f(r) ( ℓ(ℓ+1)/r² − 6M/r³ ),      ℓ ⩾ 2.
@@ -68,7 +68,7 @@ must lie within max(10⁻⁴, 10⁻⁴ · max(1, |Ω|)) of each other, and their
 
 In the Nariai limit the radial equation becomes a Pöschl–Teller problem in its own time coordinate, with the frequency
 ϖ and the coefficient A_s = ℓ(ℓ+1) for s = 0 and 1 and A_s = ℓ(ℓ+1) − 2 for s = 2. Its quasinormal frequencies are
-known exactly (equation (90) of the manuscript), and near extremality they are related to Ω by
+known exactly (equation (98) of the manuscript), and near extremality they are related to Ω by
 
 ```text
 ϖ_n = ± √(A_s − 1/4) − i (n + 1/2),   n = 0, 1, 2, ...,            ϖ = Ω / ( Λ̃ (x_c − x_h) ),
@@ -143,7 +143,7 @@ folder, for instance as `python3 checks/r2p5/parity_check.py`, and rewrites the 
 | `python/` | the independent checks of the revised manuscript, with their saved results, run logs and notes on their methods |
 | `data/nonextreme/` | one folder per scalar or electromagnetic case, with a table of modes and the raw spectra in `raw/`; the gravitational tables in `s2/odd/` and `s2/even/` |
 | `data/extreme/` | the four tables of the Nariai limit |
-| `pdf/` | the manuscript as it stood on 6 June 2026, before its revision |
+| `pdf/` | the revised manuscript, of 18 November 2026 |
 | `docs/figures/` | the script that draws the figure of this page from the tables of `data/nonextreme/`, and the style file beside it |
 
 The folders of `data/nonextreme/` are named `s<s>_L<ℓ>_La0_<digits>`, the digits being those of Λ̃ after the decimal
