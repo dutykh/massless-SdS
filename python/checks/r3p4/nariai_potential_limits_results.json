@@ -1,0 +1,49 @@
+{
+  "method": "SymPy exact rational identities; no floating-point arithmetic",
+  "source_inspected": "revision/main_referee3_point3.tex",
+  "source_sha256": "02a27b31d410d2eca0848eef531af76d4d7719fdfa2af69898b0060566b204d9",
+  "definitions": {
+    "L": "ell*(ell+1)",
+    "c": "L/2-1",
+    "r0": "3*M",
+    "Lambda_at_extremality": "1/(9*M**2)",
+    "physical_sphere_radius": "r0=Lambda**(-1/2)"
+  },
+  "important_order": "Cancel f before substituting the extremal parameters.",
+  "domain": "M>0; radiative gravity ell>=2, hence c>0 and denominators nonzero.",
+  "all_passed": true,
+  "checks": [
+    {
+      "name": "gravitational_odd",
+      "coefficient_before_limit": "(L*r - 6*M)/r",
+      "r0_squared_times_V_over_f": "L - 2",
+      "expected": "L - 2",
+      "exact_residual": "0",
+      "passed": true
+    },
+    {
+      "name": "gravitational_even",
+      "coefficient_before_limit": "(L**3*r**3 + 6*L**2*M*r**2 - 4*L**2*r**3 + 36*L*M**2*r - 24*L*M*r**2 + 4*L*r**3 - 24*Lambda*M**2*r**3 + 72*M**3 - 72*M**2*r + 24*M*r**2)/(L**2*r**3 + 12*L*M*r**2 - 4*L*r**3 + 36*M**2*r - 24*M*r**2 + 4*r**3)",
+      "r0_squared_times_V_over_f": "L - 2",
+      "expected": "L - 2",
+      "exact_residual": "0",
+      "passed": true
+    },
+    {
+      "name": "massless_minimally_coupled_scalar",
+      "coefficient_before_limit": "(3*L*r - 2*Lambda*r**3 + 6*M)/(3*r)",
+      "r0_squared_times_V_over_f": "L",
+      "expected": "L",
+      "exact_residual": "0",
+      "passed": true
+    },
+    {
+      "name": "source_free_maxwell",
+      "coefficient_before_limit": "L",
+      "r0_squared_times_V_over_f": "L",
+      "expected": "L",
+      "exact_residual": "0",
+      "passed": true
+    }
+  ]
+}

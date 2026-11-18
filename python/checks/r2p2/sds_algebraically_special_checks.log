@@ -1,0 +1,25 @@
+ell_form_of_special_frequency: PASS
+odd_superpotential_identity: PASS
+even_superpotential_identity: PASS
+axial_kernel_D_plus_W: PASS
+polar_kernel_minus_D_plus_W: PASS
+axial_AS_reduced_wave_equation: PASS
+polar_AS_reduced_wave_equation: PASS
+factorization_BA: PASS
+factorization_AB: PASS
+Darboux_intertwining: PASS
+inverse_amplitude_product: PASS
+Darboux_Wronskian_factor: PASS
+event_surface_gravity: PASS
+cosmological_surface_gravity: PASS
+event_W_limit: PASS
+cosmological_W_limit: PASS
+event_integer_index_formula: PASS
+cosmological_integer_index_formula: PASS
+exceptional_event_horizon: PASS
+exceptional_cosmological_horizon: PASS
+exceptional_ell2_event_index_12: PASS
+exceptional_ell2_cosmological_index_24: PASS
+nonresonant_AS_Jost_Wronskian: PASS
+23/23 exact checks passed.
+/workspace/scratch/d4bfd5e39ff8/checks/r2p2/sds_algebraically_special_checks.json

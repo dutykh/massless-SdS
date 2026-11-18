@@ -1,0 +1,22 @@
+MP 24 iteration 0 dw 2.217e-11 da 7.3274e-12 elapsed 0.14
+MP 24 iteration 1 dw 2.4692e-21 da 8.9467e-22 elapsed 0.24
+MP 24 iteration 2 dw 1.5415e-41 da 6.0514e-42 elapsed 0.35
+MP 24 iteration 3 dw 4.0119e-66 da 1.3259e-66 elapsed 0.42
+MP COMPLETE 24 reference error 1.26749e-12 field error 4.2404e-13
+MP 48 iteration 0 dw 6.1799e-9 da 2.0422e-9 elapsed 0.86
+MP 48 iteration 1 dw 2.7161e-16 da 9.5874e-17 elapsed 1.48
+MP 48 iteration 2 dw 2.5758e-31 da 9.6773e-32 elapsed 1.97
+MP 48 iteration 3 dw 1.5247e-61 da 6.0722e-62 elapsed 2.48
+MP COMPLETE 48 reference error 1.18377e-26 field error 3.95998e-27
+MP 96 iteration 0 dw 1.082e-6 da 3.5754e-7 elapsed 4.68
+MP 96 iteration 1 dw 1.8005e-11 da 6.1374e-12 elapsed 8.46
+MP 96 iteration 2 dw 1.9608e-21 da 6.9955e-22 elapsed 12.18
+MP 96 iteration 3 dw 1.3899e-41 da 5.1991e-42 elapsed 16.06
+MP 96 iteration 4 dw 8.9007e-64 da 2.9413e-64 elapsed 19.2
+MP COMPLETE 96 reference error 8.09611e-56 field error 2.7083e-56
+MP 128 iteration 0 dw 1.1057e-5 da 3.6538e-6 elapsed 10.05
+MP 128 iteration 1 dw 2.4378e-9 da 8.2516e-10 elapsed 19.25
+MP 128 iteration 2 dw 4.1467e-17 da 1.4651e-17 elapsed 27.97
+MP 128 iteration 3 dw 6.9741e-33 da 2.5763e-33 elapsed 35.77
+MP 128 iteration 4 dw 5.4678e-63 da 1.7993e-63 elapsed 44.85
+MP COMPLETE 128 reference error 4.24518e-63 field error 1.42009e-63

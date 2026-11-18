@@ -1,0 +1,65 @@
+{
+  "purpose": "Independent physical-Frobenius-sector verification of scalar ell2 n1 at Lambda_tilde=.09, using Nariai-seeded continuation and original-master-equation shooting.",
+  "continuation": [
+    {
+      "Lambda_tilde": 0.1111,
+      "varpi_re": 2.3979955712252634,
+      "varpi_im": -1.5000666711085076,
+      "residual": 2.1722612483467953e-14,
+      "success": true
+    },
+    {
+      "Lambda_tilde": 0.11,
+      "varpi_re": 2.4059741009999964,
+      "varpi_im": -1.5067111991655897,
+      "residual": 3.2065402860159765e-15,
+      "success": true
+    },
+    {
+      "Lambda_tilde": 0.105,
+      "varpi_re": 2.4442593792101053,
+      "varpi_im": -1.538033887530633,
+      "residual": 3.0622881782067126e-14,
+      "success": true
+    },
+    {
+      "Lambda_tilde": 0.1,
+      "varpi_re": 2.4861286682936186,
+      "varpi_im": -1.5712578828348092,
+      "residual": 1.5136254326187975e-14,
+      "success": true
+    },
+    {
+      "Lambda_tilde": 0.095,
+      "varpi_re": 2.531975991000601,
+      "varpi_im": -1.606488006816837,
+      "residual": 5.248735363377124e-14,
+      "success": true
+    },
+    {
+      "Lambda_tilde": 0.09,
+      "varpi_re": 2.5822323430245033,
+      "varpi_im": -1.6438662902390513,
+      "residual": 9.655409865124514e-14,
+      "success": true
+    }
+  ],
+  "target": {
+    "Lambda_tilde": 0.09,
+    "spin": 0,
+    "ell": 2,
+    "n": 1,
+    "varpi_re": 2.5822323430480867,
+    "varpi_im": -1.6438662902564352,
+    "Omega_re": 0.20096527609849157,
+    "Omega_im": -0.12793583187035296,
+    "coarse_refined_difference": 2.929801632070059e-11,
+    "refined_normalized_match_residual": 3.8521562473762634e-14,
+    "third_configuration_match_residual": 1.0628480121035393e-12,
+    "four_decimal_Omega": "0.2010-0.1279i"
+  },
+  "existing_anchor_sha256": {
+    "jost_check_results.json": "615cc650339b1623bab420dc61beeb2e94855fc2a956f9fe729968856ed297d5",
+    "jost_check_results.csv": "86237bada1b6c7c50007d80b0313ac040d946c460f1563316d54774e7cf28f2d"
+  }
+}

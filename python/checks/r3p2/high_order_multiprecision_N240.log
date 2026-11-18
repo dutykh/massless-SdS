@@ -1,0 +1,19 @@
+START {"N": 240, "dps": 70, "Lambda_tilde": ".06", "spin": 0, "ell": 2, "seed_N": 128, "seed_dps": 70, "zero_padding": 112, "seed_varpi_im": "-2.709360907059439194972389368420096161864021121999703129146690979032402", "reference_loaded_before_solve": false, "method": "Unchanged imaginary_multiprecision_newton.solve(); fully rebuilt 70-digit real QEP; bordered Newton for alpha=-Im(varpi) and all N Chebyshev coefficients, normalized by Phi(-0.3)=1."}
+MP 240 iteration 0 dw 4.4214e-61 da 1.4611e-61 elapsed 36.41
+Independent reference first loaded in post-Newton diagnostics elapsed=42.396s
+MP COMPLETE 240 reference error 4.46388e-61 field error 1.49325e-61
+FINAL {
+  "N": 240,
+  "dps": 70,
+  "error_to_independent_varpi_reference": "4.463884313037170941954919070962681150606534940704458527119118843934015e-61",
+  "error_to_independent_Omega_reference": "4.657083694016314153956567184101792777464212688595463206223013085911851e-62",
+  "relative_pencil_residual": "2.480454600381591455990971916084587208370733769242007922446856213419613e-76",
+  "independent_original_ODE_residual": "3.353943492301955106790247659384823121531281202967631084329353872818853e-67",
+  "relative_reduced_ODE_residual_including_endpoints": "2.820256742574158324075268607227512622535005082866826379412140193982144e-71",
+  "relative_reduced_endpoint_residual": "1.816366525124665444069960592252484936095542824365890622287408650323461e-71",
+  "last_eight_coefficient_norm_fraction": "6.952698738054173270495628442307227797409655106275078974085920918347736e-76",
+  "eigenfunction_error_to_independent_Frobenius_Linf": "1.493251539079464347230768275601789235625240080413494954623651395225587e-61",
+  "frequency_change_from_N128_spectral_seed": "4.421432520001304545349712816866128428571842393589921450432452745815709e-61",
+  "actual_Newton_corrections": 1,
+  "total_elapsed_seconds": 43.552407008000046
+}

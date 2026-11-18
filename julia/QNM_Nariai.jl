@@ -14,8 +14,14 @@ using Base.Threads
 #
 # This Julia code solves the corresponding generalized
 # eigenvalue problem, identifies modes stable under
-# N = 90, 95, 100, and then filters them against the exact
-# analytic Nariai / Poschl-Teller spectrum.
+# N = 90, 95, 100. For As > 0 it tests the physical two-horizon Jost determinant,
+# independently of any analytic frequency list. Analytic frequencies are
+# generated only after selection, for a separate accuracy comparison.
+# For As = 0 (the exact Nariai scalar monopole), the free-wave
+# Jost Wronskian is 2i*varpi: there are no nonzero scattering QNMs.
+# Endpoint-regular pencil roots are retained only as diagnostics;
+# a numerical candidate for the static zero threshold is reported
+# separately. This statement does not apply to near-extremal SdS.
 # ============================================================
 
 # ------------------------------------------------------------
@@ -66,8 +72,9 @@ const FILETAG = "s$(SPIN)_ell$(ELL)"
 const DATA_DIR = raw"C:\Users\david\Documents\MAPLEFILESOLDPC\SPECTRAL DENYS\07-Nariai\data"
 
 # Julia output directory.
-# Each sector is written in its own subdirectory.
-const OUT_DIR = joinpath(DATA_DIR, "Julia", FILETAG)
+# Each sector is written in its own subdirectory. Corrected outputs
+# are kept separate from files produced by the original script.
+const OUT_DIR = joinpath(DATA_DIR, "Julia_referee2_point5", FILETAG)
 mkpath(OUT_DIR)
 
 # ------------------------------------------------------------
@@ -96,10 +103,12 @@ const PLOT_ZERO_TOL = bf("1e-12")
 const STABLE_RELTOL = bf("1e-4")
 const STABLE_ABSTOL = bf("1e-4")
 
-# Filtering tolerance against the exact analytic Nariai spectrum.
-# Modes farther than this from the nearest analytic frequency are
-# treated as off-ladder numerical roots.
-const ANALYTIC_FILTER_TOL = bf("1e-8")
+# Physical Jost matching tolerance. Every constituent resolution root and
+# its average must pass independently. Precision agreement is also required.
+const JOST_RESIDUAL_TOL = bf("1e-8")
+const JOST_PRECISION_TOL = bf("1e-30")
+const JOST_DECIMAL_DIGITS = (80, 120)
+const ZERO_THRESHOLD_TOL = bf("1e-8")
 
 # Number of analytic overtones generated for comparison.
 const ANALYTIC_NMAX = 80
@@ -299,16 +308,16 @@ end
 # Analytic Nariai spectrum
 # ------------------------------------------------------------
 
-# Exact spectrum:
+# Scattering QNM spectrum for the physical sectors with As > 0:
 #
 #     varpi_n = +/- sqrt(As - 1/4) - i*(n + 1/2).
 #
-# For As = 0, the two branches degenerate into
-#
-#     varpi = 0, -i, -2i, -3i, ...
-#
+# At As = 0 the formal ladder 0, -i, -2i, ... is not the scattering
+# QNM spectrum. The nonzero frequencies fail the selected Jost
+# boundary conditions; the constant zero threshold is handled separately.
 function analytic_nariai_modes(nmax::Integer)
     T = BigFloat
+    AS == 0 && return Complex{T}[]
 
     rootarg = T(AS) - T(1) / T(4)
     root = sqrt(complex(rootarg, zero(T)))
@@ -323,7 +332,6 @@ function analytic_nariai_modes(nmax::Integer)
     end
 
     # Remove exact or near-exact duplicates.
-    # This is important for the scalar monopole As = 0.
     unique_modes = Complex{T}[]
 
     for ω in modes
@@ -339,36 +347,118 @@ function analytic_nariai_modes(nmax::Integer)
     return unique_modes[p]
 end
 
-# Keep only one stable numerical mode per analytic frequency.
-# For each analytic frequency, retain the closest numerical stable mode,
-# provided the distance is below ANALYTIC_FILTER_TOL.
-function filter_by_analytic_unique_indices(stable, analytic; tol = ANALYTIC_FILTER_TOL)
-    best = Dict{Int, Tuple{Int, BigFloat}}()
-
+# Match the analytically known constant threshold without inserting a
+# synthetic zero eigenvalue or accepting cancellation in the average.
+# The returned index is zero when no numerical candidate meets tolerance.
+function zero_threshold_index(stable, e1m, e2m, e3m; tol = ZERO_THRESHOLD_TOL)
+    best_index = 0
+    best_distance = BigFloat(Inf)
     for k in eachindex(stable)
-        j, d = nearest_mode_unrestricted(stable[k], analytic)
-        j == 0 && continue
-        d <= tol || continue
-
-        if !haskey(best, j) || d < best[j][2]
-            best[j] = (k, d)
+        distance = max(abs(stable[k]), abs(e1m[k]), abs(e2m[k]), abs(e3m[k]))
+        if distance <= tol && distance < best_distance
+            best_index = k
+            best_distance = distance
         end
     end
+    return best_index
+end
 
-    analytic_indices = sort(
-        collect(keys(best)),
-        by = j -> (abs(imag(analytic[j])), real(analytic[j]))
-    )
-
-    stable_indices = Int[]
-    analytic_errors = BigFloat[]
-
-    for j in analytic_indices
-        push!(stable_indices, best[j][1])
-        push!(analytic_errors, best[j][2])
+# Physical scattering test from the independently normalized Jost solutions.
+# With q=(1+tanh(chi_star))/2, a+b=1, a*b=As, c=1-i*varpi,
+# J_- = exp(-i*varpi*chi_star) * 2F1(a,b;c;q), J_+(chi_star)=J_-(-chi_star).
+# At chi_star=0, F=2F1(a,b;c;1/2), P=-i*varpi*F+F_q/2,
+# W=-2*F*P. Its normalized form is W/(abs2(F)+abs2(P)).
+# No expected frequencies, overtone counts, or nearest-ladder errors enter.
+# For As=0, simplify the complete expression first: F=1 and W=2i*varpi.
+# At c=0,-1,... the unit-amplitude Jost functions may have normalization
+# poles. Such cases are flagged for Laurent analysis, never accepted by
+# multiplying W by a factor that vanishes at the exceptional frequency.
+function nariai_jost_at_precision(omega, As::Integer, digits::Integer)
+    return setprecision(BigFloat, digits; base=10) do
+        w = Complex{BigFloat}(omega)
+        ii = complex(zero(BigFloat), one(BigFloat))
+        if As == 0
+            W = 2*ii*w
+            return (D=W/(1+abs2(w)), status="evaluated", terms=0)
+        end
+        q = sqrt(complex(BigFloat(1)/4-As, zero(BigFloat)))
+        a, b, c = BigFloat(1)/2+q, BigFloat(1)/2-q, 1-ii*w
+        if real(c) <= 0 && abs(c-round(real(c))) <= bf("1e-25")
+            return (D=complex(BigFloat(NaN),BigFloat(NaN)),
+                    status="unresolved normalization pole", terms=0)
+        end
+        term = one(w)
+        F, Fq = term, zero(w)
+        small = 0
+        for n in 1:10000
+            term *= (a+n-1)*(b+n-1)/((c+n-1)*n*2)
+            F += term
+            derivative_term = 2*n*term
+            Fq += derivative_term
+            tol = BigFloat(10)^(-digits+15)*max(BigFloat(1),abs(F),abs(Fq))
+            small = max(abs(term),abs(derivative_term)) < tol ? small+1 : 0
+            if small >= 8
+                P = -ii*w*F+Fq/2
+                denominator = abs2(F)+abs2(P)
+                if denominator == 0 || !isfinite(denominator)
+                    return (D=complex(BigFloat(NaN),BigFloat(NaN)),
+                            status="unresolved midpoint evaluation", terms=n)
+                end
+                return (D=-2*F*P/denominator, status="evaluated", terms=n)
+            end
+        end
+        return (D=complex(BigFloat(NaN),BigFloat(NaN)),
+                status="unresolved series convergence", terms=10000)
     end
+end
 
-    return stable_indices, analytic_indices, analytic_errors
+function nariai_jost_check(omega; As=AS)
+    # The zero threshold is never an ordinary nonzero scattering QNM.
+    if As == 0
+        v = nariai_jost_at_precision(omega,As,JOST_DECIMAL_DIGITS[2])
+        status = abs(omega) <= ZERO_THRESHOLD_TOL ?
+                 "static threshold candidate" : "excluded nonzero free-wave root"
+        return (pass=false, residual=abs(v.D), precision_difference=BigFloat(0), status=status)
+    end
+    lo = nariai_jost_at_precision(omega,As,JOST_DECIMAL_DIGITS[1])
+    hi = nariai_jost_at_precision(omega,As,JOST_DECIMAL_DIGITS[2])
+    if lo.status != "evaluated" || hi.status != "evaluated"
+        return (pass=false, residual=BigFloat(NaN), precision_difference=BigFloat(NaN),
+                status=lo.status != "evaluated" ? lo.status : hi.status)
+    end
+    delta = abs(lo.D-hi.D)
+    residual = abs(hi.D)
+    if delta > JOST_PRECISION_TOL || !isfinite(residual)
+        return (pass=false,residual=residual,precision_difference=delta,
+                status="unresolved precision agreement")
+    end
+    passed = residual <= JOST_RESIDUAL_TOL
+    return (pass=passed,residual=residual,precision_difference=delta,
+            status=passed ? "passes physical Jost check" : "fails Jost numerical tolerance")
+end
+
+function save_jost_audit(filename::AbstractString, vals)
+    open(filename,"w") do io
+        println(io,"# All finite input roots, with multiplicity; no analytic-frequency selection.")
+        println(io,"# D=W/(norm(Jminus,Jminus_prime)*norm(Jplus,Jplus_prime)) at chi_star=0.")
+        println(io,"# Tolerance ",JOST_RESIDUAL_TOL,"; decimal precisions ",JOST_DECIMAL_DIGITS)
+        println(io,"# A failed numerical tolerance does not prove the absence of a nearby resonance.")
+        println(io,"# index Re(varpi) Im(varpi) abs(D) precision_difference status")
+        for k in eachindex(vals)
+            r=nariai_jost_check(vals[k])
+            println(io,k," ",real(vals[k])," ",imag(vals[k])," ",r.residual," ",r.precision_difference," ",r.status)
+        end
+    end
+end
+
+function physical_jost_indices(stable,e1m,e2m,e3m)
+    keep=Int[]
+    for k in eachindex(stable)
+        # Resolution matching alone cannot establish the radiation branches.
+        checks=[nariai_jost_check(w) for w in (stable[k],e1m[k],e2m[k],e3m[k])]
+        all(r.pass for r in checks) && push!(keep,k)
+    end
+    return keep
 end
 
 # ------------------------------------------------------------
@@ -542,7 +632,7 @@ function save_comparison_with_analytic(filename::AbstractString,
                                        analytic_indices,
                                        analytic_errors)
     open(filename, "w") do io
-        println(io, "# Filtered numerical modes compared with analytic Nariai modes")
+        println(io, "# Jost-selected numerical modes compared with analytic Nariai modes")
         println(io, "# Sector: s = ", SPIN, ", ell = ", ELL, ", As = ", AS)
         println(io, "# k Re(num) Im(num) Re(analytic) Im(analytic) |difference|")
 
@@ -561,45 +651,6 @@ function save_comparison_with_analytic(filename::AbstractString,
     end
 
     println("Numerical/analytic comparison written to: ", filename)
-end
-
-function save_off_ladder_modes(filename::AbstractString,
-                               stable_raw,
-                               selected_raw_indices::AbstractVector{Bool},
-                               analytic)
-    open(filename, "w") do io
-        println(io, "# Raw stable modes not retained by the analytic-ladder filter")
-        println(io, "# These are treated as numerical duplicates/artifacts.")
-        println(io, "# Sector: s = ", SPIN, ", ell = ", ELL, ", As = ", AS)
-        println(io, "# Filter tolerance = ", ANALYTIC_FILTER_TOL)
-        println(io, "# k Re(raw) Im(raw) Re(nearest analytic) Im(nearest analytic) |difference|")
-
-        for k in eachindex(stable_raw)
-            selected_raw_indices[k] && continue
-
-            j, d = nearest_mode_unrestricted(stable_raw[k], analytic)
-
-            if j == 0
-                println(io,
-                    k, " ",
-                    real(stable_raw[k]), " ",
-                    imag(stable_raw[k]), " ",
-                    "NaN NaN NaN"
-                )
-            else
-                println(io,
-                    k, " ",
-                    real(stable_raw[k]), " ",
-                    imag(stable_raw[k]), " ",
-                    real(analytic[j]), " ",
-                    imag(analytic[j]), " ",
-                    d
-                )
-            end
-        end
-    end
-
-    println("Off-ladder numerical roots written to: ", filename)
 end
 
 # ------------------------------------------------------------
@@ -721,6 +772,9 @@ println("N = ", N_VALS[3], ": ", length(e3))
 save_complex_pairs(outfile("spectrum-N$(N_VALS[1])-$(FILETAG).dat"), e1)
 save_complex_pairs(outfile("spectrum-N$(N_VALS[2])-$(FILETAG).dat"), e2)
 save_complex_pairs(outfile("spectrum-N$(N_VALS[3])-$(FILETAG).dat"), e3)
+for (n,values) in zip(N_VALS,(e1,e2,e3))
+    save_jost_audit(outfile("jost_audit_raw-N$(n)-$(FILETAG).dat"),values)
+end
 
 # Identify raw stable modes across resolutions.
 stable_raw, e1m_raw, e2m_raw, e3m_raw, err12_raw, err23_raw, err13_raw =
@@ -736,169 +790,220 @@ save_stable_modes(
     outfile("stable_modes_raw-$(FILETAG).txt"),
     stable_raw, e1m_raw, e2m_raw, e3m_raw,
     err12_raw, err23_raw, err13_raw;
-    title = "Raw stable Nariai QNM modes"
+    title = "Raw stable Nariai regular-pencil roots (diagnostics)"
 )
 
-# Analytic benchmark.
-analytic = analytic_nariai_modes(ANALYTIC_NMAX)
+if AS == 0
+    # For the exact Nariai scalar monopole, W = 2i*varpi has no
+    # nonzero zeros. Regularity of the factored polynomial alone
+    # therefore supplies no ordinary scattering QNMs in this sector.
+    analytic = analytic_nariai_modes(ANALYTIC_NMAX)
+    @assert isempty(analytic)
+    threshold_index = zero_threshold_index(
+        stable_raw, e1m_raw, e2m_raw, e3m_raw;
+        tol = ZERO_THRESHOLD_TOL
+    )
+    threshold_indices = threshold_index == 0 ? Int[] : [threshold_index]
 
-save_analytic_modes(
-    outfile("analytic_nariai_modes-$(FILETAG).dat"),
-    analytic
-)
-
-# Filter raw stable modes against the analytic ladder.
-physical_indices, analytic_indices, analytic_errors =
-    filter_by_analytic_unique_indices(stable_raw, analytic;
-        tol = ANALYTIC_FILTER_TOL
+    save_stable_modes(
+        outfile("zero_frequency_threshold-$(FILETAG).txt"),
+        stable_raw[threshold_indices],
+        e1m_raw[threshold_indices], e2m_raw[threshold_indices], e3m_raw[threshold_indices],
+        err12_raw[threshold_indices], err23_raw[threshold_indices], err13_raw[threshold_indices];
+        title = "Numerical candidate for the constant zero threshold (not a scattering QNM)"
     )
 
-selected_raw = falses(length(stable_raw))
-selected_raw[physical_indices] .= true
+    status_file = outfile("scattering_qnm_status-$(FILETAG).txt")
+    open(status_file, "w") do io
+        println(io, "# Exact Nariai scalar monopole: As = 0")
+        println(io, "# Scattering boundary conditions use the selected left/right Jost solutions.")
+        println(io, "# Jost Wronskian: W = 2i*varpi; no nonzero scattering QNM frequencies.")
+        println(io, "# Number of ordinary scattering QNMs: 0")
+        println(io, "# The analytic constant solution at varpi = 0 is a separate static threshold.")
+        println(io, "# Numerical zero-threshold matching tolerance: ", ZERO_THRESHOLD_TOL)
+        if threshold_index == 0
+            println(io, "# Threshold status: no stable numerical candidate meets this tolerance.")
+        else
+            println(io, "# Threshold status: a numerical candidate meets the tolerance in all three runs.")
+            println(io, "# Raw stable index: ", threshold_index)
+            println(io, "# Candidate Re(varpi) Im(varpi): ",
+                real(stable_raw[threshold_index]), " ", imag(stable_raw[threshold_index]))
+        end
+        println(io, "# Raw spectra and stable regular-pencil roots remain available as diagnostics.")
+        println(io, "# In particular, nonzero formal ladder roots are not scattering QNMs.")
+        println(io, "# No analytic-ladder QNM tables or plots are generated for this sector.")
+        println(io, "# This classification concerns exact Nariai, not near-extremal SdS.")
+    end
+    println("No nonzero scattering QNMs in the exact Nariai scalar-monopole sector.")
+    println("Numerical zero-threshold candidate found: ", threshold_index != 0)
+    println("Scattering classification written to: ", status_file)
+else
+    # Select by physical horizon Jost matching before creating a frequency list.
+    physical_indices = physical_jost_indices(stable_raw,e1m_raw,e2m_raw,e3m_raw)
+    save_jost_audit(outfile("jost_audit_stable-$(FILETAG).dat"),stable_raw)
 
-stable = stable_raw[physical_indices]
-e1m = e1m_raw[physical_indices]
-e2m = e2m_raw[physical_indices]
-e3m = e3m_raw[physical_indices]
-err12 = err12_raw[physical_indices]
-err23 = err23_raw[physical_indices]
-err13 = err13_raw[physical_indices]
+    # Analytic frequencies are a post-selection accuracy comparison only.
+    analytic = analytic_nariai_modes(ANALYTIC_NMAX)
+    save_analytic_modes(outfile("analytic_nariai_modes-$(FILETAG).dat"),analytic)
+    analytic_indices = Int[]
+    analytic_errors = BigFloat[]
+    for k in physical_indices
+        j,d = nearest_mode_unrestricted(stable_raw[k],analytic)
+        push!(analytic_indices,j)
+        push!(analytic_errors,d)
+    end
 
-println("Number of filtered physical modes found: ", length(stable))
-println("Number of off-ladder raw stable modes discarded: ", length(stable_raw) - length(stable))
+    selected_raw = falses(length(stable_raw))
+    selected_raw[physical_indices] .= true
 
-# Save filtered physical modes.
-save_stable_modes(
-    outfile("stable_modes-$(FILETAG).txt"),
-    stable, e1m, e2m, e3m,
-    err12, err23, err13;
-    title = "Filtered physical Nariai QNM modes"
-)
+    stable = stable_raw[physical_indices]
+    e1m = e1m_raw[physical_indices]
+    e2m = e2m_raw[physical_indices]
+    e3m = e3m_raw[physical_indices]
+    err12 = err12_raw[physical_indices]
+    err23 = err23_raw[physical_indices]
+    err13 = err13_raw[physical_indices]
 
-save_comparison_with_analytic(
-    outfile("stable_vs_analytic-$(FILETAG).dat"),
-    stable,
-    analytic,
-    analytic_indices,
-    analytic_errors
-)
+    println("Number passing the independent physical Jost check: ", length(stable))
+    println("Number of stable roots not passing the Jost check: ", length(stable_raw) - length(stable))
 
-save_off_ladder_modes(
-    outfile("off_ladder_roots-$(FILETAG).dat"),
-    stable_raw,
-    selected_raw,
-    analytic
-)
+    # Save filtered physical modes.
+    save_stable_modes(
+        outfile("stable_modes-$(FILETAG).txt"),
+        stable, e1m, e2m, e3m,
+        err12, err23, err13;
+        title = "Stable Nariai roots passing the physical Jost check"
+    )
 
-# ------------------------------------------------------------
-# Plots
-# ------------------------------------------------------------
+    save_comparison_with_analytic(
+        outfile("stable_vs_analytic-$(FILETAG).dat"),
+        stable,
+        analytic,
+        analytic_indices,
+        analytic_errors
+    )
 
-plotlyjs()
+    # Retain the complement without relabelling numerical failures as proven
+    # nonresonances. The physical diagnostic, rather than ladder distance,
+    # determines membership in this file.
+    save_jost_audit(
+        outfile("stable_roots_not_passing_jost-$(FILETAG).dat"),
+        stable_raw[.!selected_raw]
+    )
 
-analytic_plot = analytic_for_plot(analytic, stable)
+    # ------------------------------------------------------------
+    # Plots
+    # ------------------------------------------------------------
 
-x1, y1 = plot_xy(e1)
-x2, y2 = plot_xy(e2)
-x3, y3 = plot_xy(e3)
-xs, ys = plot_xy(stable; chop_real = true)
-xraw, yraw = plot_xy(stable_raw; chop_real = true)
-xa, ya = plot_xy(analytic_plot; chop_real = true)
+    plotlyjs()
 
-# Main plot: raw spectra at the three resolutions, filtered stable modes,
-# and analytic modes. The x-range is chosen from the analytic/filtered data,
-# so roundoff-level Re(varpi) does not create misleading zooms.
-p = scatter(x1, y1;
-    ms = 2.5,
-    alpha = 0.25,
-    label = "N=$(N_VALS[1])"
-)
+    analytic_plot = analytic_for_plot(analytic, stable)
 
-scatter!(p, x2, y2;
-    ms = 2.5,
-    alpha = 0.25,
-    label = "N=$(N_VALS[2])"
-)
+    x1, y1 = plot_xy(e1)
+    x2, y2 = plot_xy(e2)
+    x3, y3 = plot_xy(e3)
+    xs, ys = plot_xy(stable; chop_real = true)
+    xraw, yraw = plot_xy(stable_raw; chop_real = true)
+    xa, ya = plot_xy(analytic_plot; chop_real = true)
 
-scatter!(p, x3, y3;
-    ms = 2.5,
-    alpha = 0.25,
-    label = "N=$(N_VALS[3])"
-)
+    # Main plot: raw spectra at the three resolutions, Jost-checked stable modes,
+    # and analytic modes. Axes include every raw finite root; none is clipped
+    # merely because it does not match the post-selection analytic reference.
+    p = scatter(x1, y1;
+        ms = 2.5,
+        alpha = 0.25,
+        label = "N=$(N_VALS[1])"
+    )
 
-scatter!(p, xs, ys;
-    ms = 5,
-    alpha = 1.0,
-    label = "filtered stable"
-)
+    scatter!(p, x2, y2;
+        ms = 2.5,
+        alpha = 0.25,
+        label = "N=$(N_VALS[2])"
+    )
 
-scatter!(p, xa, ya;
-    ms = 4,
-    marker = :x,
-    alpha = 1.0,
-    label = "analytic"
-)
+    scatter!(p, x3, y3;
+        ms = 2.5,
+        alpha = 0.25,
+        label = "N=$(N_VALS[3])"
+    )
 
-xlo, xhi = recommended_xlims(analytic_plot, stable)
-ylo, yhi = recommended_ylims(analytic_plot, stable)
+    scatter!(p, xs, ys;
+        ms = 5,
+        alpha = 1.0,
+        label = "Jost-checked stable"
+    )
 
-xlims!(p, xlo, xhi)
-ylims!(p, ylo, yhi)
+    scatter!(p, xa, ya;
+        ms = 4,
+        marker = :x,
+        alpha = 1.0,
+        label = "analytic"
+    )
 
-xlabel!(p, "Re ϖ")
-ylabel!(p, "Im ϖ")
-title!(p, "Nariai QNMs: s=$(SPIN), ell=$(ELL)")
+    xlo, xhi = recommended_xlims(e1,e2,e3,stable_raw,stable)
+    ylo, yhi = recommended_ylims(e1,e2,e3,stable_raw,stable)
 
-savefig(p, outfile("qnm_plot-$(FILETAG).png"))
-savefig(p, outfile("qnm_plot-$(FILETAG).html"))
+    xlims!(p, xlo, xhi)
+    ylims!(p, ylo, yhi)
 
-# Filtered stable plot: this is the clean plot to use in the paper.
-stableplot = scatter(xs, ys;
-    ms = 5,
-    alpha = 1.0,
-    label = "filtered stable"
-)
+    xlabel!(p, "Re ϖ")
+    ylabel!(p, "Im ϖ")
+    title!(p, "Nariai QNMs: s=$(SPIN), ell=$(ELL)")
 
-scatter!(stableplot, xa, ya;
-    ms = 4,
-    marker = :x,
-    alpha = 1.0,
-    label = "analytic"
-)
+    savefig(p, outfile("qnm_plot-$(FILETAG).png"))
+    savefig(p, outfile("qnm_plot-$(FILETAG).html"))
 
-xlims!(stableplot, xlo, xhi)
-ylims!(stableplot, ylo, yhi)
+    # Jost-selected plot; all raw roots are separately saved and plotted.
+    stableplot = scatter(xs, ys;
+        ms = 5,
+        alpha = 1.0,
+        label = "Jost-checked stable"
+    )
 
-xlabel!(stableplot, "Re ϖ")
-ylabel!(stableplot, "Im ϖ")
-title!(stableplot, "Nariai QNMs: s=$(SPIN), ell=$(ELL)")
+    scatter!(stableplot, xa, ya;
+        ms = 4,
+        marker = :x,
+        alpha = 1.0,
+        label = "analytic"
+    )
 
-savefig(stableplot, outfile("qnm_plot_stable-$(FILETAG).png"))
-savefig(stableplot, outfile("qnm_plot_stable-$(FILETAG).html"))
+    xlims!(stableplot, xlo, xhi)
+    ylims!(stableplot, ylo, yhi)
 
-# Diagnostic plot: raw stable modes before analytic filtering.
-# This is useful to inspect numerical duplicates and off-ladder roots.
-rawplot = scatter(xraw, yraw;
-    ms = 5,
-    alpha = 0.7,
-    label = "raw stable"
-)
+    xlabel!(stableplot, "Re ϖ")
+    ylabel!(stableplot, "Im ϖ")
+    title!(stableplot, "Nariai QNMs: s=$(SPIN), ell=$(ELL)")
 
-scatter!(rawplot, xa, ya;
-    ms = 4,
-    marker = :x,
-    alpha = 1.0,
-    label = "analytic"
-)
+    savefig(stableplot, outfile("qnm_plot_stable-$(FILETAG).png"))
+    savefig(stableplot, outfile("qnm_plot_stable-$(FILETAG).html"))
 
-xlims!(rawplot, xlo, xhi)
-ylims!(rawplot, ylo, yhi)
+    # Diagnostic plot: raw stable modes before physical Jost selection.
+    # This is useful to inspect numerical duplicates and off-ladder roots.
+    rawplot = scatter(xraw, yraw;
+        ms = 5,
+        alpha = 0.7,
+        label = "raw stable"
+    )
 
-xlabel!(rawplot, "Re ϖ")
-ylabel!(rawplot, "Im ϖ")
-title!(rawplot, "Raw stable Nariai roots: s=$(SPIN), ell=$(ELL)")
+    scatter!(rawplot, xa, ya;
+        ms = 4,
+        marker = :x,
+        alpha = 1.0,
+        label = "analytic"
+    )
 
-savefig(rawplot, outfile("qnm_plot_raw_stable-$(FILETAG).png"))
-savefig(rawplot, outfile("qnm_plot_raw_stable-$(FILETAG).html"))
+    raw_xlo,raw_xhi = recommended_xlims(e1,e2,e3,stable_raw)
+    raw_ylo,raw_yhi = recommended_ylims(e1,e2,e3,stable_raw)
+    xlims!(rawplot, raw_xlo, raw_xhi)
+    ylims!(rawplot, raw_ylo, raw_yhi)
+
+    xlabel!(rawplot, "Re ϖ")
+    ylabel!(rawplot, "Im ϖ")
+    title!(rawplot, "Raw stable Nariai roots: s=$(SPIN), ell=$(ELL)")
+
+    savefig(rawplot, outfile("qnm_plot_raw_stable-$(FILETAG).png"))
+    savefig(rawplot, outfile("qnm_plot_raw_stable-$(FILETAG).html"))
+
+end
 
 println("Done.")

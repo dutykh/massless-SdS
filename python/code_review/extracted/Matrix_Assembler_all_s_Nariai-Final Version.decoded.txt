@@ -1,0 +1,196 @@
+===== Group 0 Input Equation 0 =====
+restart:
+with(LinearAlgebra):
+
+# ------------------------------------------------------------
+# Numerical precision
+# ------------------------------------------------------------
+p := 50:
+
+if kernelopts(maxdigits) < p then
+    error "kernelopts(maxdigits)=%1 < requested p=%2",
+          kernelopts(maxdigits), p:
+end if:
+
+Digits := p:
+
+# ------------------------------------------------------------
+# Field sector and angular momentum
+#
+# s = 0 : massless scalar,          ell >= 0
+# s = 1 : electromagnetic field,    ell >= 1
+# s = 2 : gravitational field,      ell >= 2
+#
+# The Nariai coefficient is:
+# As = ell*(ell+1)       for s = 0,1
+# As = ell*(ell+1) - 2   for s = 2
+# ------------------------------------------------------------
+ s := 2:
+ ell := 3:
+
+if s = 0 then
+    if ell < 0 then
+        error "For s=0 one needs ell >= 0":
+    end if:
+    As := ell*(ell + 1):
+
+elif s = 1 then
+    if ell < 1 then
+        error "For s=1 one needs ell >= 1":
+    end if:
+    As := ell*(ell + 1):
+
+elif s = 2 then
+    if ell < 2 then
+        error "For s=2 one needs ell >= 2":
+    end if:
+    As := ell*(ell + 1) - 2:
+
+else
+    error "Unknown spin sector s=%1. Use s=0,1,2", s:
+end if:
+
+filetag := cat("s", s, "_ell", ell):
+
+printf("Nariai spectral assembler\n"):
+printf("s = %d, ell = %d, As = %a\n", s, ell, As):
+printf("Matrix pencil: M0 + I*varpi*M1 + varpi^2*M2 = 0\n"):
+
+# ------------------------------------------------------------
+# Output directory
+# ------------------------------------------------------------
+outdir := "C:/Users/david/Documents/MAPLEFILESOLDPC/SPECTRAL DENYS/07-Nariai":
+datadir := cat(outdir, "/data"):
+
+if not FileTools:-Exists(datadir) then
+    FileTools:-MakeDirectory(datadir, 'recurse' = true):
+end if:
+
+if not FileTools:-Exists(datadir) then
+    error "Output directory was not created: %1", datadir:
+end if:
+
+if not FileTools:-IsDirectory(datadir) then
+    error "Output path exists but is not a directory: %1", datadir:
+end if:
+
+if not FileTools:-IsWritable(datadir) then
+    error "Cannot write to output directory: %1", datadir:
+end if:
+
+printf("Writing files to: %s\n", datadir):
+
+# ------------------------------------------------------------
+# Regular Nariai equation after factoring QNM asymptotics:
+#
+# (1-y^2) Phi'' - 2*y*(1 - I*varpi) Phi'
+#     + (varpi^2 + I*varpi - As) Phi = 0.
+#
+# Split as
+#
+#     L0[Phi] + I*varpi L1[Phi] + varpi^2 L2[Phi] = 0.
+#
+# Hence:
+#
+# L0 = (1-y^2) d^2/dy^2 - 2*y d/dy - As
+# L1 = 1 + 2*y d/dy
+# L2 = 1
+#
+# Therefore the exported matrices satisfy:
+#
+#     M0 + I*varpi*M1 + varpi^2*M2 = 0.
+# ------------------------------------------------------------
+
+L00 := y -> -As:
+L01 := y -> -2*y:
+L02 := y -> 1 - y^2:
+
+L10 := y -> 1:
+L11 := y -> 2*y:
+L12 := y -> 0:
+
+L20 := y -> 1:
+L21 := y -> 0:
+L22 := y -> 0:
+
+# ------------------------------------------------------------
+# Chebyshev matrix assembly
+# ------------------------------------------------------------
+x := 'x':
+
+nmin := 90:
+nstep := 5:
+nmax := 100:
+
+for n from nmin by nstep to nmax do
+
+    printf("Assembling n = %d\n", n):
+
+    FFexpr   := simplify(add(b[k]*ChebyshevT(k, x), k = 0 .. n - 1)):
+    DFFexpr  := diff(FFexpr, x):
+    DDFFexpr := diff(FFexpr, x $ 2):
+
+    M0 := Matrix(n, n):
+    M1 := Matrix(n, n):
+    M2 := Matrix(n, n):
+
+    for i from 1 to n do
+
+        xi := evalf(cos((2*i - 1)*Pi/(2*n))):
+
+        FFval   := eval(FFexpr,   x = xi):
+        DFFval  := eval(DFFexpr,  x = xi):
+        DDFFval := eval(DDFFexpr, x = xi):
+
+        expr0 := expand(evalf(
+                    L00(xi)*FFval
+                  + L01(xi)*DFFval
+                  + L02(xi)*DDFFval
+                 )):
+
+        expr1 := expand(evalf(
+                    L10(xi)*FFval
+                  + L11(xi)*DFFval
+                  + L12(xi)*DDFFval
+                 )):
+
+        expr2 := expand(evalf(
+                    L20(xi)*FFval
+                  + L21(xi)*DFFval
+                  + L22(xi)*DDFFval
+                 )):
+
+        for j from 1 to n do
+            M0[i, j] := coeff(expr0, b[j - 1], 1):
+            M1[i, j] := coeff(expr1, b[j - 1], 1):
+            M2[i, j] := coeff(expr2, b[j - 1], 1):
+        end do:
+
+    end do:
+
+    matrixname := cat(datadir, "/M0-", n, "-", filetag, ".mat"):
+    ExportMatrix(matrixname, M0, target = MATLAB, mode = ascii):
+
+    matrixname := cat(datadir, "/M1-", n, "-", filetag, ".mat"):
+    ExportMatrix(matrixname, M1, target = MATLAB, mode = ascii):
+
+    matrixname := cat(datadir, "/M2-", n, "-", filetag, ".mat"):
+    ExportMatrix(matrixname, M2, target = MATLAB, mode = ascii):
+
+end do:
+
+printf("Done.\n"):
+
+===== Group 0 OutputText Equation 0 =====
+Nariai spectral assembler
+s = 2, ell = 3, As = 10
+Matrix pencil: M0 + I*varpi*M1 + varpi^2*M2 = 0
+Writing files to: C:/Users/david/Documents/MAPLEFILESOLDPC/SPECTRAL DENYS/07-Nariai/data
+Assembling n = 90
+Assembling n = 95
+Assembling n = 100
+Done.
+
+
+===== Group 1 Input Equation 0 =====
+ 

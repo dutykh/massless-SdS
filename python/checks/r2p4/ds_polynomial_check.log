@@ -1,0 +1,3 @@
+PASS: polynomial coefficients are exactly r^4 times original scalar master equation.
+PASS: Frobenius recurrence denominator a2*n*(n+2*rho).
+r^4 and the coordinate-derivative factors are nonzero in the positive interhorizon interval; they introduce no spectral zeros.

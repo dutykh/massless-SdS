@@ -1,0 +1,66 @@
+{
+  "scope": "Physical variable definitions and exact reduction identities only; no new mode classification or spectral calculation.",
+  "sympy_version": "1.14.0",
+  "passed": 10,
+  "total": 10,
+  "checks": [
+    {
+      "name": "minimally_coupled_scalar_reduction",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "even_Maxwell_Ftr_identity_gives_master",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "even_Maxwell_t_constraint",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "even_Maxwell_r_constraint",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "odd_Maxwell_orbit_wave_operator",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "odd_vector_curl_sign",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "Nariai_even_field_strength_normalization",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "SdS_to_Nariai_Maxwell_master_pullback",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "product_space_scalar_Maxwell_radial_equation",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "Nariai_gravitational_curvature_term",
+      "passed": true,
+      "residual": "0"
+    }
+  ],
+  "conventions": {
+    "time": "exp(-i omega t)",
+    "sphere": "unit sphere q_AB, epsilon_theta_phi=sin(theta), Delta Y=-L Y; L=ell(ell+1)",
+    "odd_vector": "X_A=epsilon_A{}^B D_B Y, so D_A X_B-D_B X_A=L epsilon_AB Y",
+    "even_master": "psi_e=r^2 [F_tr]_lm/L in SdS; Psi_e=[F_tau_chi]_lm/L in dimensionless Nariai coordinates",
+    "odd_master": "psi_o=[epsilon^{AB}F_AB]_lm/(2L), with unit-sphere epsilon",
+    "scalar_master": "phi=sum e^{-i omega t}psi_0(r)Y/r; Nariai phi=sum e^{-i varpi tau}Psi_0(chi)Y/r0"
+  }
+}

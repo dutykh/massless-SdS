@@ -1,0 +1,89 @@
+[
+  {
+    "A": 0,
+    "N": 16,
+    "total_eigenvalues": 32,
+    "finite_eigenvalues": 32,
+    "window_eigenvalues": 7,
+    "status_counts": {
+      "excluded: nonzero free-wave W": 6,
+      "static threshold candidate": 1
+    },
+    "max_Jost_residual": 1.0,
+    "max_precision_difference": 4.63856709502143e-82,
+    "max_gamma_identity_error": 0.0,
+    "elapsed_seconds": 0.18274426460266113
+  },
+  {
+    "A": 0,
+    "N": 24,
+    "total_eigenvalues": 48,
+    "finite_eigenvalues": 48,
+    "window_eigenvalues": 7,
+    "status_counts": {
+      "excluded: nonzero free-wave W": 6,
+      "static threshold candidate": 1
+    },
+    "max_Jost_residual": 1.0,
+    "max_precision_difference": 4.63856709502143e-82,
+    "max_gamma_identity_error": 0.0,
+    "elapsed_seconds": 1.1190159320831299
+  },
+  {
+    "A": 0,
+    "N": 32,
+    "total_eigenvalues": 64,
+    "finite_eigenvalues": 64,
+    "window_eigenvalues": 7,
+    "status_counts": {
+      "excluded: nonzero free-wave W": 6,
+      "static threshold candidate": 1
+    },
+    "max_Jost_residual": 1.0,
+    "max_precision_difference": 4.63856709502143e-82,
+    "max_gamma_identity_error": 0.0,
+    "elapsed_seconds": 1.7362534999847412
+  },
+  {
+    "A": 2,
+    "N": 16,
+    "total_eigenvalues": 32,
+    "finite_eigenvalues": 32,
+    "window_eigenvalues": 8,
+    "status_counts": {
+      "passes physical Jost check": 8
+    },
+    "max_Jost_residual": 5.881128406417696e-60,
+    "max_precision_difference": 4.058283952492815e-67,
+    "max_gamma_identity_error": 5.669520407859118e-107,
+    "elapsed_seconds": 1.9871025085449219
+  },
+  {
+    "A": 2,
+    "N": 24,
+    "total_eigenvalues": 48,
+    "finite_eigenvalues": 48,
+    "window_eigenvalues": 8,
+    "status_counts": {
+      "passes physical Jost check": 8
+    },
+    "max_Jost_residual": 5.881128406417696e-60,
+    "max_precision_difference": 4.058283952492815e-67,
+    "max_gamma_identity_error": 5.669520407859118e-107,
+    "elapsed_seconds": 3.095362424850464
+  },
+  {
+    "A": 2,
+    "N": 32,
+    "total_eigenvalues": 64,
+    "finite_eigenvalues": 64,
+    "window_eigenvalues": 8,
+    "status_counts": {
+      "passes physical Jost check": 8
+    },
+    "max_Jost_residual": 5.881128406417696e-60,
+    "max_precision_difference": 4.058283952492815e-67,
+    "max_gamma_identity_error": 5.669520407859118e-107,
+    "elapsed_seconds": 4.800219535827637
+  }
+]

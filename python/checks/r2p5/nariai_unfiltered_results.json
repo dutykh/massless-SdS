@@ -1,0 +1,111 @@
+{
+  "method": "Fresh roots-grid Chebyshev coefficient pencil and independent physical midpoint Jost determinant; no analytic-frequency proximity criterion.",
+  "window": {
+    "real_min": -3.0,
+    "real_max": 3.0,
+    "imag_min": -3.75,
+    "imag_max": 0.25
+  },
+  "raw_multiplicities_retained": true,
+  "N_is_number_of_nodes": true,
+  "polynomial_degree": "N-1",
+  "Jost_tolerance": "1.0e-8",
+  "Jost_evaluation_decimal_precisions": [
+    80,
+    120
+  ],
+  "normalization": "D=W[J_-,J_+]/(||(J_-,dJ_-/dchi*)||_2 ||(J_+,dJ_+/dchi*)||_2), evaluated at chi*=0. Unit-amplitude physical horizon Jost functions. Reflection makes denominator |F|^2+|P|^2.",
+  "gamma_identity": "W=-2 Gamma(1-i varpi)^2/[Gamma(1/2-i varpi+sqrt(1/4-A)) Gamma(1/2-i varpi-sqrt(1/4-A))]. A=0 is simplified exactly to W=2i varpi before evaluation. Normalization poles are not classified by a regularized determinant zero.",
+  "scope": "Finite binary64 pencils in the specified rectangle only; not a rerun of historical Maple/Julia matrices, not interval certification or all-mode completeness.",
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "mpmath": "1.3.0"
+  },
+  "source_sha256": "76e328ce96fdd696244f2a252b80698e7add50e1d9b3d6f833d4da4605648dbe",
+  "summaries": [
+    {
+      "A": 0,
+      "N": 16,
+      "total_eigenvalues": 32,
+      "finite_eigenvalues": 32,
+      "window_eigenvalues": 7,
+      "status_counts": {
+        "excluded: nonzero free-wave W": 6,
+        "static threshold candidate": 1
+      },
+      "max_Jost_residual": 1.0,
+      "max_precision_difference": 5.04485934162649e-82,
+      "max_gamma_identity_error": 0.0
+    },
+    {
+      "A": 0,
+      "N": 24,
+      "total_eigenvalues": 48,
+      "finite_eigenvalues": 48,
+      "window_eigenvalues": 7,
+      "status_counts": {
+        "excluded: nonzero free-wave W": 6,
+        "static threshold candidate": 1
+      },
+      "max_Jost_residual": 1.0,
+      "max_precision_difference": 1.1837153227448982e-81,
+      "max_gamma_identity_error": 0.0
+    },
+    {
+      "A": 0,
+      "N": 32,
+      "total_eigenvalues": 64,
+      "finite_eigenvalues": 64,
+      "window_eigenvalues": 7,
+      "status_counts": {
+        "excluded: nonzero free-wave W": 6,
+        "static threshold candidate": 1
+      },
+      "max_Jost_residual": 1.0,
+      "max_precision_difference": 1.0858055137403546e-81,
+      "max_gamma_identity_error": 0.0
+    },
+    {
+      "A": 2,
+      "N": 16,
+      "total_eigenvalues": 32,
+      "finite_eigenvalues": 32,
+      "window_eigenvalues": 8,
+      "status_counts": {
+        "passes physical Jost check": 8
+      },
+      "max_Jost_residual": 6.39905541454958e-10,
+      "max_precision_difference": 4.0582839514233906e-67,
+      "max_gamma_identity_error": 5.669520405684122e-107
+    },
+    {
+      "A": 2,
+      "N": 24,
+      "total_eigenvalues": 48,
+      "finite_eigenvalues": 48,
+      "window_eigenvalues": 8,
+      "status_counts": {
+        "passes physical Jost check": 8
+      },
+      "max_Jost_residual": 8.695724860591576e-09,
+      "max_precision_difference": 4.0582839527370744e-67,
+      "max_gamma_identity_error": 5.669520405662344e-107
+    },
+    {
+      "A": 2,
+      "N": 32,
+      "total_eigenvalues": 64,
+      "finite_eigenvalues": 64,
+      "window_eigenvalues": 8,
+      "status_counts": {
+        "fails physical Jost tolerance": 4,
+        "passes physical Jost check": 4
+      },
+      "max_Jost_residual": 1.1747354963846457e-06,
+      "max_precision_difference": 4.058283959524409e-67,
+      "max_gamma_identity_error": 5.669520505025665e-107
+    }
+  ]
+}

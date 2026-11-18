@@ -1,0 +1,5 @@
+PASS: exact alpha_n, beta_n, gamma_n recurrence identities from the original Schwarzschild master equation.
+Leaver prefactor: (x-1)^rho*x^(-2rho)*exp[-rho*(x-1)], rho=-2i*Omega.
+Horizon: prefactor/(x-1)^rho tends to1. Infinity: prefactor/[exp(-rho*x)*x^(-rho)] tends toexp(rho).
+The infinity factor is outgoing for exp(-i omega t); the CF minimal-sequence condition supplies the global selection.
+Scope: low oscillatory frequencies only; no statement about the negative imaginary axis.

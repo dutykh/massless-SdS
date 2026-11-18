@@ -1,0 +1,106 @@
+{
+  "scope": "Exact source-level endpoint identities only; no Maple/Julia execution or spectral recomputation.",
+  "assumption": "zc>1, with physical horizon relations imposed exactly before limits.",
+  "sympy_version": "1.14.0",
+  "sectors": [
+    {
+      "sector": "s0_s1",
+      "source": "/workspace/scratch/d4bfd5e39ff8/code_review/extracted/Matrix_Assembler_s0_s1-Final Version.decoded.txt",
+      "source_sha256": "993bf1c97413c87550cac519203cc63ebdc17afec06ce4cc1c79b68609605752",
+      "active_grid": "Chebyshev-Gauss roots only; no optional Lobatto branch",
+      "raw_endpoint_coefficient_zeros": 18,
+      "finite_reduced_limits_and_derivative_identities": 18,
+      "reduced_endpoint_coefficients": {
+        "-1": {
+          "L00": "-(zc - 1)**6*(zc + 2)*(L**2*zc**2 + L**2*zc + L**2 + L*zc**2 + L*zc + L + epsilon*zc**2 + epsilon*zc - 2*epsilon)/(64*(zc**2 + zc + 1)**2)",
+          "L01": "(zc - 1)**6*(zc + 2)**2/(32*(zc**2 + zc + 1)**2)",
+          "L02": "0",
+          "L10": "(zc - 1)**5*(3*zc**3 + 7*zc**2 + 7*zc + 1)/(32*zc*(zc + 1)*(2*zc + 1))",
+          "L11": "-(zc - 1)**5*(zc + 2)/(8*zc*(zc + 1))",
+          "L12": "0",
+          "L20": "(zc - 1)**4*(zc**2 + zc + 1)**2*(3*zc**3 + 7*zc**2 + 7*zc + 1)/(8*zc**2*(zc + 1)**2*(zc + 2)*(2*zc + 1))",
+          "L21": "0",
+          "L22": "0"
+        },
+        "1": {
+          "L00": "-(zc - 1)**6*(2*zc + 1)*(L**2*zc**2 + L**2*zc + L**2 + L*zc**2 + L*zc + L - 2*epsilon*zc**2 + epsilon*zc + epsilon)/(64*zc**3*(zc**2 + zc + 1)**2)",
+          "L01": "-(zc - 1)**6*(2*zc + 1)**2/(32*zc**2*(zc**2 + zc + 1)**2)",
+          "L02": "0",
+          "L10": "(zc - 1)**5*(zc**3 + 7*zc**2 + 7*zc + 3)/(32*zc**3*(zc + 1)*(zc + 2))",
+          "L11": "(zc - 1)**5*(2*zc + 1)/(8*zc**2*(zc + 1))",
+          "L12": "0",
+          "L20": "(zc - 1)**4*(zc**2 + zc + 1)**2*(zc**3 + 7*zc**2 + 7*zc + 3)/(8*zc**3*(zc + 1)**2*(zc + 2)*(2*zc + 1))",
+          "L21": "0",
+          "L22": "0"
+        }
+      }
+    },
+    {
+      "sector": "s2odd",
+      "source": "/workspace/scratch/d4bfd5e39ff8/code_review/extracted/Matrix_Assembler_s2odd-Final Version.decoded.txt",
+      "source_sha256": "0ce8c0200144a633b170adb3ff759162f0d06b798f87e36920fddf96fcf4d27a",
+      "active_grid": "Chebyshev-Gauss roots only; no optional Lobatto branch",
+      "raw_endpoint_coefficient_zeros": 18,
+      "finite_reduced_limits_and_derivative_identities": 18,
+      "reduced_endpoint_coefficients": {
+        "-1": {
+          "L00": "-(zc - 1)**6*(zc + 2)*(L**2*zc**2 + L**2*zc + L**2 + L*zc**2 + L*zc + L - 3*zc**2 - 3*zc)/(64*(zc**2 + zc + 1)**2)",
+          "L01": "(zc - 1)**6*(zc + 2)**2/(32*(zc**2 + zc + 1)**2)",
+          "L02": "0",
+          "L10": "(zc - 1)**5*(3*zc**3 + 7*zc**2 + 7*zc + 1)/(32*zc*(zc + 1)*(2*zc + 1))",
+          "L11": "-(zc - 1)**5*(zc + 2)/(8*zc*(zc + 1))",
+          "L12": "0",
+          "L20": "(zc - 1)**4*(zc**2 + zc + 1)**2*(3*zc**3 + 7*zc**2 + 7*zc + 1)/(8*zc**2*(zc + 1)**2*(zc + 2)*(2*zc + 1))",
+          "L21": "0",
+          "L22": "0"
+        },
+        "1": {
+          "L00": "-(zc - 1)**6*(2*zc + 1)*(L**2*zc**2 + L**2*zc + L**2 + L*zc**2 + L*zc + L - 3*zc - 3)/(64*zc**3*(zc**2 + zc + 1)**2)",
+          "L01": "-(zc - 1)**6*(2*zc + 1)**2/(32*zc**2*(zc**2 + zc + 1)**2)",
+          "L02": "0",
+          "L10": "(zc - 1)**5*(zc**3 + 7*zc**2 + 7*zc + 3)/(32*zc**3*(zc + 1)*(zc + 2))",
+          "L11": "(zc - 1)**5*(2*zc + 1)/(8*zc**2*(zc + 1))",
+          "L12": "0",
+          "L20": "(zc - 1)**4*(zc**2 + zc + 1)**2*(zc**3 + 7*zc**2 + 7*zc + 3)/(8*zc**3*(zc + 1)**2*(zc + 2)*(2*zc + 1))",
+          "L21": "0",
+          "L22": "0"
+        }
+      }
+    },
+    {
+      "sector": "s2even",
+      "source": "/workspace/scratch/d4bfd5e39ff8/code_review/extracted/Matrix_Assembler_s2even-Final Version.decoded.txt",
+      "source_sha256": "e03255d18135b88a54ea5fbc962daa311deb55a109d9dde16407839547034c3c",
+      "active_grid": "Chebyshev-Gauss roots only; no optional Lobatto branch",
+      "raw_endpoint_coefficient_zeros": 18,
+      "finite_reduced_limits_and_derivative_identities": 18,
+      "reduced_endpoint_coefficients": {
+        "-1": {
+          "L00": "-(zc - 1)**6*(zc + 2)*(4*c**2*zc**4 + 8*c**2*zc**3 + 12*c**2*zc**2 + 8*c**2*zc + 4*c**2 + 4*c*zc**4 + 8*c*zc**3 + 12*c*zc**2 + 8*c*zc + 4*c + 3*zc**4 + 6*zc**3 - 3*zc**2 - 6*zc)/(64*(zc**2 + zc + 1)**2*(2*c*zc**2 + 2*c*zc + 2*c + 3*zc**2 + 3*zc))",
+          "L01": "(zc - 1)**6*(zc + 2)**2/(32*(zc**2 + zc + 1)**2)",
+          "L02": "0",
+          "L10": "(zc - 1)**5*(3*zc**3 + 7*zc**2 + 7*zc + 1)/(32*zc*(zc + 1)*(2*zc + 1))",
+          "L11": "-(zc - 1)**5*(zc + 2)/(8*zc*(zc + 1))",
+          "L12": "0",
+          "L20": "(zc - 1)**4*(zc**2 + zc + 1)**2*(3*zc**3 + 7*zc**2 + 7*zc + 1)/(8*zc**2*(zc + 1)**2*(zc + 2)*(2*zc + 1))",
+          "L21": "0",
+          "L22": "0"
+        },
+        "1": {
+          "L00": "-(zc - 1)**6*(2*zc + 1)*(4*c**2*zc**4 + 8*c**2*zc**3 + 12*c**2*zc**2 + 8*c**2*zc + 4*c**2 + 4*c*zc**4 + 8*c*zc**3 + 12*c*zc**2 + 8*c*zc + 4*c - 6*zc**3 - 3*zc**2 + 6*zc + 3)/(64*zc**3*(zc**2 + zc + 1)**2*(2*c*zc**2 + 2*c*zc + 2*c + 3*zc + 3))",
+          "L01": "-(zc - 1)**6*(2*zc + 1)**2/(32*zc**2*(zc**2 + zc + 1)**2)",
+          "L02": "0",
+          "L10": "(zc - 1)**5*(zc**3 + 7*zc**2 + 7*zc + 3)/(32*zc**3*(zc + 1)*(zc + 2))",
+          "L11": "(zc - 1)**5*(2*zc + 1)/(8*zc**2*(zc + 1))",
+          "L12": "0",
+          "L20": "(zc - 1)**4*(zc**2 + zc + 1)**2*(zc**3 + 7*zc**2 + 7*zc + 3)/(8*zc**3*(zc + 1)**2*(zc + 2)*(2*zc + 1))",
+          "L21": "0",
+          "L22": "0"
+        }
+      }
+    }
+  ],
+  "raw_endpoint_coefficient_zeros": 54,
+  "finite_reduced_limits_and_derivative_identities": 54,
+  "all_passed": true
+}

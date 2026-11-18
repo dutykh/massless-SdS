@@ -1,0 +1,361 @@
+{
+  "sympy_version": "1.14.0",
+  "mpmath_version": "1.3.0",
+  "symbolic_passed": 64,
+  "symbolic_total": 64,
+  "symbolic_checks": [
+    {
+      "name": "free_Jost_W_equals_2iw",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "zero_frequency_constant_solution",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "zero_frequency_second_solution",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "outgoing_reconstruction_plus_base",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "outgoing_reconstruction_minus_base",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n1_sign1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n1_sign-1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "free_W_at_minus_i_1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n2_sign1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n2_sign-1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "free_W_at_minus_i_2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n3_sign1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n3_sign-1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "free_W_at_minus_i_3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n4_sign1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n4_sign-1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "free_W_at_minus_i_4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n5_sign1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n5_sign-1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "free_W_at_minus_i_5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n6_sign1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "monopole_polynomial_n6_sign-1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "free_W_at_minus_i_6",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "hypergeom_derivative_coefficient",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "hypergeom_potential_coefficient",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "hypergeom_connection_exponent",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "gamma_recurrence",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "Jost_W_equals_2iw_Cin",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "A0_Cin_cancellation_equals_one",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "A0_gamma_W_cancellation_equals_2iw",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_pole_condition_n0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_exact_outgoing_polynomial_n0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_left_amplitude_n0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_right_amplitude_n0",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_pole_condition_n1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_exact_outgoing_polynomial_n1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_left_amplitude_n1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_right_amplitude_n1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_pole_condition_n2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_exact_outgoing_polynomial_n2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_left_amplitude_n2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_right_amplitude_n2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_pole_condition_n3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_exact_outgoing_polynomial_n3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_left_amplitude_n3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_right_amplitude_n3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_pole_condition_n4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_exact_outgoing_polynomial_n4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_left_amplitude_n4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_right_amplitude_n4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_pole_condition_n5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_exact_outgoing_polynomial_n5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_left_amplitude_n5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "positive_A_polynomial_right_amplitude_n5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_general_determinant_N2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_spurious_monopole_ladder_N2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_general_determinant_N3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_spurious_monopole_ladder_N3",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_general_determinant_N4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_spurious_monopole_ladder_N4",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_general_determinant_N5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_spurious_monopole_ladder_N5",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_general_determinant_N6",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "finite_pencil_spurious_monopole_ladder_N6",
+      "passed": true,
+      "residual": "0"
+    }
+  ],
+  "finite_monopole_pencil_determinants": {
+    "2": "w*(w + I)**2*(w + 2*I)",
+    "3": "w*(w + I)**2*(w + 2*I)**2*(w + 3*I)",
+    "4": "w*(w + I)**2*(w + 2*I)**2*(w + 3*I)**2*(w + 4*I)",
+    "5": "w*(w + I)**2*(w + 2*I)**2*(w + 3*I)**2*(w + 4*I)**2*(w + 5*I)",
+    "6": "w*(w + I)**2*(w + 2*I)**2*(w + 3*I)**2*(w + 4*I)**2*(w + 5*I)**2*(w + 6*I)"
+  },
+  "numerical_jost_checks": [
+    {
+      "A": 2,
+      "w": "(0.7 - 0.3j)",
+      "relative_error": "3.62174137921e-76",
+      "passed": true
+    },
+    {
+      "A": 6,
+      "w": "(2.0 - 2.7j)",
+      "relative_error": "4.27390420871e-76",
+      "passed": true
+    },
+    {
+      "A": 0,
+      "w": "(0.42 - 1.2j)",
+      "relative_error": "1.63026397154e-76",
+      "passed": true
+    }
+  ],
+  "interpretation": {
+    "A_positive": "Gamma numerator remains finite at the denominator zeros; they are outgoing QNMs. A=1/4 has coalescent branches.",
+    "A_zero": "Cancel coincident gamma factors first: C_in=1 and W=2iw. No nonzero damped outgoing resonance exists.",
+    "zero_frequency": "Bounded constant static/threshold solution; do not classify by nonzero-frequency incoming/outgoing exponents.",
+    "polynomial_ladder": "Exact finite-dimensional regularity eigenvalues persist under increasing N but are not free-wave outgoing resonances."
+  }
+}

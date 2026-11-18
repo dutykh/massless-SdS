@@ -1,0 +1,95 @@
+Nariai raw-spectrum and independent admissibility audit (R2 point 5)
+
+Finding
+The uploaded QNM_Nariai.jl and the positive-A branch of the point-1
+revision select stable roots by distance to a precomputed analytic ladder.
+That procedure checks agreement with a reference list but is circular as a
+test that the regularized finite pencil enforces physical radiation.
+The new cumulative QNM_Nariai_referee2_point5.jl removes this selection.
+
+Independent physical test
+Let q=(1+tanh chi_*)/2 and a,b=1/2 +/- sqrt(1/4-A), c=1-i varpi.
+The unit-amplitude left Jost solution is
+ J_-=exp(-i varpi chi_*) 2F1(a,b;c;q), J_+(chi_*)=J_-(-chi_*).
+At chi_*=0 define F=2F1(a,b;c;1/2), P=-i varpi F+F_q/2.
+Then the physical, unregularized Jost Wronskian is W=-2FP and
+ D=W/(|F|^2+|P|^2).
+The denominator is the product of the two solution-vector norms at the
+midpoint. It does not multiply W by a frequency-dependent zero. The
+hypergeometric series is evaluated at 80 and 120 decimal digits. Acceptance
+requires |D|<=1e-8 and agreement of the two evaluations. Julia checks the
+stable average AND every constituent root at the three resolutions.
+Analytic frequencies are constructed only after this physical selection,
+solely for a subsequent frequency-accuracy comparison.
+
+The independent connection formula gives
+ W=-2 Gamma(1-i varpi)^2 /
+   [Gamma(1/2-i varpi+sqrt(1/4-A)) Gamma(1/2-i varpi-sqrt(1/4-A))].
+This follows from 2i varpi C_in using Gamma(1-i varpi)=(-i varpi)Gamma(-i varpi).
+For A=0, cancel the entire gamma quotient first: C_in=1 and W=2i varpi.
+Thus every nonzero apparent free-wave ladder root is excluded, independent
+of its proximity to any expected spectrum. The static zero is a separate
+threshold, never counted as a nonzero scattering QNM. For nonzero A,
+c=0,-1,... are normalization poles of this Jost representation and are
+flagged for separate Laurent analysis, never accepted by a regularized zero.
+The tests do not identify all possible exceptional-frequency behavior.
+
+Raw finite-pencil calculation
+N denotes N nodes and polynomial degree N-1, matching the uploaded Maple
+roots-grid construction. The operators preserve P_(N-1). In a monomial
+basis their exact action is
+ L0 y^k=k(k-1)y^(k-2)-[k(k+1)+A]y^k,
+ L1 y^k=(2k+1)y^k, L2 y^k=y^k.
+The full 2N x 2N companion matrix is assembled from these exact integer
+coefficients and diagonalized by mpmath.eig at 60 decimal digits. It is
+algebraically equivalent to the collocation pencil: evaluation at N distinct
+nodes gives an invertible Vandermonde left factor and changing from monomials
+to Chebyshev polynomials gives an invertible right factor. No analytic root
+list, characteristic-polynomial factorization, or selected 2x2 block solution
+is used. All 2N raw roots are retained with algebraic multiplicity.
+
+Audited rectangle: |Re varpi|<=3, -3.75<=Im varpi<=0.25.
+A    N    all raw roots    roots in window    pass nonzero Jost    static threshold    excluded nonzero free roots
+0    16   32               7                  0                    1                   6
+0    24   48               7                  0                    1                   6
+0    32   64               7                  0                    1                   6
+2    16   32               8                  8                    0                   0
+2    24   48               8                  8                    0                   0
+2    32   64               8                  8                    0                   0
+
+Representative raw frequencies and physical diagnostics, at every N:
+A=0: zero (simple threshold); -i, -2i, -3i (each multiplicity two).
+At the nonzero free roots, |D|=1,0.8,0.6, respectively; W=2,4,6.
+A=2: the raw eigensolver returns both signs of 1.322875655532295...
+with imaginary parts -0.5,-1.5,-2.5,-3.5. They are classified through W,
+not by those displayed frequency values. Maximum |D|=5.89e-60 across the
+24 nonzero-A raw roots in the window. Maximum 80/120-digit D discrepancy
+is 4.06e-67. The independently evaluated complete gamma W agrees with
+midpoint W within 5.7e-107 in the recorded relative normalization.
+All 288 raw eigenvalues are saved, including roots outside the rectangle;
+only the 45 entries in the rectangle are physically classified here.
+
+A fresh binary64 Chebyshev collocation implementation is also preserved.
+It has the same counts in the rectangle. At A=2 its maximum |D| increases
+from 6.40e-10 (N16) through 8.70e-9 (N24) to 1.18e-6 (N32); 4/8 N32
+roots fail the stated 1e-8 numerical tolerance. They are numerical failures,
+not proven absent resonances. The exact-coefficient 60-digit run demonstrates
+why an increased degree alone does not guarantee improved finite-precision
+frequencies. This binary64 experiment is not the historical 50-digit
+Maple export/70-digit Julia workflow.
+
+Files and execution scope
+nariai_unfiltered_check.py: executed binary64 collocation + independent Jost.
+nariai_raw_all.csv / nariai_raw_window.csv: complete binary64 raw data.
+nariai_unfiltered_results.json: settings/counts/metrics for binary64 run.
+nariai_polynomial_precision_check.py: executed full 60-digit finite pencil.
+nariai_polynomial_raw_all.csv / nariai_polynomial_raw_window.csv: all raw roots.
+nariai_polynomial_precision_results.json: precision-run settings and counts.
+nariai_admissibility_validation.py/.json: executed 12 independent generic
+Jost/gamma identities, 5 exact free-case pole cancellations, exceptional
+parameter guard, and static Julia source-flow assertions.
+revision/QNM_Nariai_referee2_point5.jl/.diff: cumulative replacement source.
+The Julia executable is unavailable here; the revised Julia source has not
+been executed. Source-flow checks and the equivalent independent Python
+formulas/calculations passed. Neither original source nor point-1 revision
+was modified. No completeness or interval-certification claim is made.

@@ -1,0 +1,84 @@
+[
+  {
+    "A": 0,
+    "N": 16,
+    "total_eigenvalues": 32,
+    "finite_eigenvalues": 32,
+    "window_eigenvalues": 7,
+    "status_counts": {
+      "excluded: nonzero free-wave W": 6,
+      "static threshold candidate": 1
+    },
+    "max_Jost_residual": 1.0,
+    "max_precision_difference": 5.04485934162649e-82,
+    "max_gamma_identity_error": 0.0
+  },
+  {
+    "A": 0,
+    "N": 24,
+    "total_eigenvalues": 48,
+    "finite_eigenvalues": 48,
+    "window_eigenvalues": 7,
+    "status_counts": {
+      "excluded: nonzero free-wave W": 6,
+      "static threshold candidate": 1
+    },
+    "max_Jost_residual": 1.0,
+    "max_precision_difference": 1.1837153227448982e-81,
+    "max_gamma_identity_error": 0.0
+  },
+  {
+    "A": 0,
+    "N": 32,
+    "total_eigenvalues": 64,
+    "finite_eigenvalues": 64,
+    "window_eigenvalues": 7,
+    "status_counts": {
+      "excluded: nonzero free-wave W": 6,
+      "static threshold candidate": 1
+    },
+    "max_Jost_residual": 1.0,
+    "max_precision_difference": 1.0858055137403546e-81,
+    "max_gamma_identity_error": 0.0
+  },
+  {
+    "A": 2,
+    "N": 16,
+    "total_eigenvalues": 32,
+    "finite_eigenvalues": 32,
+    "window_eigenvalues": 8,
+    "status_counts": {
+      "passes physical Jost check": 8
+    },
+    "max_Jost_residual": 6.39905541454958e-10,
+    "max_precision_difference": 4.0582839514233906e-67,
+    "max_gamma_identity_error": 5.669520405684122e-107
+  },
+  {
+    "A": 2,
+    "N": 24,
+    "total_eigenvalues": 48,
+    "finite_eigenvalues": 48,
+    "window_eigenvalues": 8,
+    "status_counts": {
+      "passes physical Jost check": 8
+    },
+    "max_Jost_residual": 8.695724860591576e-09,
+    "max_precision_difference": 4.0582839527370744e-67,
+    "max_gamma_identity_error": 5.669520405662344e-107
+  },
+  {
+    "A": 2,
+    "N": 32,
+    "total_eigenvalues": 64,
+    "finite_eigenvalues": 64,
+    "window_eigenvalues": 8,
+    "status_counts": {
+      "fails physical Jost tolerance": 4,
+      "passes physical Jost check": 4
+    },
+    "max_Jost_residual": 1.1747354963846457e-06,
+    "max_precision_difference": 4.058283959524409e-67,
+    "max_gamma_identity_error": 5.669520505025665e-107
+  }
+]

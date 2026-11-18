@@ -1,0 +1,29 @@
+{
+  "scope": "Independent algebra checks for the scalar SdS stability addition.\n\nThis checks exact identities, not a numerical QNM computation or a PDE theorem.\nThe domain and boundary conclusions are assessed separately in the report.\n",
+  "sympy_version": "1.14.0",
+  "identities_passed": 7,
+  "exact_residuals": {
+    "factorization_coefficient": "0",
+    "full_operator_identity": "0",
+    "static_first_order_residual": "0",
+    "static_master_residual": "0",
+    "second_static_solution_residual": "0",
+    "incident_current_identity": "0",
+    "transmitted_current_identity": "0"
+  },
+  "domain_assessment": {
+    "conditions": "M>0 and 0<M^2 Lambda<1/9, minimally coupled massless scalar",
+    "form_domain": "H^1(R), with closure taken in the form norm (q+L2 norm); bounded f/r makes this norm equivalent to H1",
+    "operator_domain": "H^2(R), since the real potential is smooth and bounded",
+    "upper_half_plane": "The prescribed branches and their derivatives decay exponentially; integration by parts has zero endpoint terms",
+    "bounded_static_monopole": "Unique up to scale: psi=C r; the other independent solution has logarithmic singularities at both simple horizons",
+    "zero_not_L2": "For C!=0, psi tends to the nonzero constants C r_h and C r_c at the two infinite tortoise-coordinate ends",
+    "limitation": "Mode stability only; no claim of spectral completeness, nonlinear stability, quantitative decay, or a damped-QNM L2 identity"
+  },
+  "source_hashes": {
+    "main_referee2_point6.tex": "d1f06097ef5c658c3ddb2cea6ff18380be7748f6509895227f3ae24bd496844a",
+    "response_referee2_point6.tex": "b414a5d686ca61dff12bc3774645227b244fa449baaed2a29efbe0a3baf88573"
+  },
+  "manuscript_modified": false,
+  "numerical_QNM_run": false
+}

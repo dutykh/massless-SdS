@@ -1,0 +1,21 @@
+Transcript of the220decimal-digit independent audit executed during review.
+Saved after execution; no additional spectral or root-search calculation.
+Reproduce using: python ds_independent_audit.py
+
+samples 141 selected 7
+minimum sampled integer distance 0.000580791903648189
+LAM 0.06 alpha 0.282662354503656406024062 N 480
+t 0.35 lost decimal digits(left F,D;right F,D) [['0.0012625837', '5.5142406e-14'], ['1.5583359', '0.79534279']]
+W(-delta),W(root),W(+delta) -1.17003626e-6 8.70577261e-80 1.17003871e-6
+t 0.5 lost decimal digits(left F,D;right F,D) [['0.00028616047', '8.2913904e-9'], ['1.1364268', '0.55518801']]
+W(-delta),W(root),W(+delta) -1.25524584e-7 -6.26379343e-58 1.25524603e-7
+LAM 0.111 alpha 0.384268039234643593333967 N 720
+t 0.45 lost decimal digits(left F,D;right F,D) [['12.787792', '12.568859'], ['16.710529', '16.396544']]
+W(-delta),W(root),W(+delta) 5.73200564e-6 -7.25634255e-121 -5.761214e-6
+t 0.5 lost decimal digits(left F,D;right F,D) [['9.1743889', '8.6849658'], ['14.928082', '14.460049']]
+W(-delta),W(root),W(+delta) 1.04399423e-11 -1.31828086e-126 -1.04399894e-11
+LAM 0.1111 alpha 0.384440593649075331039037 N 1050
+t 0.45 lost decimal digits(left F,D;right F,D) [['42.22641', '41.802251'], ['45.079618', '44.546008']]
+W(-delta),W(root),W(+delta) -1.41833993e-13 1.24434585e-88 2.34782088e-13
+t 0.5 lost decimal digits(left F,D;right F,D) [['38.825501', '38.344876'], ['47.487261', '47.013329']]
+W(-delta),W(root),W(+delta) -3.99577375e-14 2.81151417e-89 3.99577496e-14

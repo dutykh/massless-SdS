@@ -1,0 +1,272 @@
+{
+  "sympy_version": "1.14.0",
+  "mpmath_version": "1.3.0",
+  "passed": 23,
+  "total": 23,
+  "checks": [
+    {
+      "name": "ell_form_of_special_frequency",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "odd_superpotential_identity",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "even_superpotential_identity",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "axial_kernel_D_plus_W",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "polar_kernel_minus_D_plus_W",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "axial_AS_reduced_wave_equation",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "polar_AS_reduced_wave_equation",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "factorization_BA",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "factorization_AB",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "Darboux_intertwining",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "inverse_amplitude_product",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "Darboux_Wronskian_factor",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "event_surface_gravity",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "cosmological_surface_gravity",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "event_W_limit",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "cosmological_W_limit",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "event_integer_index_formula",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "cosmological_integer_index_formula",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "exceptional_event_horizon",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "exceptional_cosmological_horizon",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "exceptional_ell2_event_index_12",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "exceptional_ell2_cosmological_index_24",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "nonresonant_AS_Jost_Wronskian",
+      "passed": true,
+      "residual": "0"
+    }
+  ],
+  "parameter_checks": [
+    {
+      "ell": 2,
+      "M": "1",
+      "M2Lambda": "0.02",
+      "nu_h": "8.994461942646791831284571341323970058464",
+      "nu_c": "30.40151744759754181529404451707866614087",
+      "nu_h_distance_to_nearest_integer": "0.005538057353208168715428659",
+      "nu_c_distance_to_nearest_integer": "0.4015174475975418152940445",
+      "conditional_nonresonant_Jost_W_at_AS": "2.626718622837207670975964633618548105467"
+    },
+    {
+      "ell": 2,
+      "M": "1",
+      "M2Lambda": "0.04",
+      "nu_h": "10.39905751516895891141821104567854921552",
+      "nu_c": "24.88822353649646294534752226034127661643",
+      "nu_h_distance_to_nearest_integer": "0.399057515168958911418211",
+      "nu_c_distance_to_nearest_integer": "0.1117764635035370546524777",
+      "conditional_nonresonant_Jost_W_at_AS": "2.822262908635735812077840027298646549489"
+    },
+    {
+      "ell": 2,
+      "M": "1",
+      "M2Lambda": "0.06",
+      "nu_h": "12.59086316425853171094850209307613364966",
+      "nu_c": "24.06859202927091651611019051935755482305",
+      "nu_h_distance_to_nearest_integer": "0.4091368357414682890514979",
+      "nu_c_distance_to_nearest_integer": "0.06859202927091651611019052",
+      "conditional_nonresonant_Jost_W_at_AS": "3.014812083596454386321056116549979132837"
+    },
+    {
+      "ell": 2,
+      "M": "1",
+      "M2Lambda": "0.08",
+      "nu_h": "16.71078384000297749634923709410886099616",
+      "nu_c": "26.41851909399346118920581624061458115016",
+      "nu_h_distance_to_nearest_integer": "0.2892161599970225036507629",
+      "nu_c_distance_to_nearest_integer": "0.4185190939934611892058162",
+      "conditional_nonresonant_Jost_W_at_AS": "3.232861815101934993293511600661410484814"
+    },
+    {
+      "ell": 2,
+      "M": "1",
+      "M2Lambda": "0.09",
+      "nu_h": "20.77231699006825037221123669248064694932",
+      "nu_c": "29.83191693005032560468200714118267099922",
+      "nu_h_distance_to_nearest_integer": "0.2276830099317496277887633",
+      "nu_c_distance_to_nearest_integer": "0.1680830699496743953179929",
+      "conditional_nonresonant_Jost_W_at_AS": "3.365517778367775367774846847872499200887"
+    },
+    {
+      "ell": 2,
+      "M": "1",
+      "M2Lambda": "0.10",
+      "nu_h": "29.58995788955187499993016460197452248994",
+      "nu_c": "38.10432887288225654314801192360309443049",
+      "nu_h_distance_to_nearest_integer": "0.4100421104481250000698354",
+      "nu_c_distance_to_nearest_integer": "0.1043288728822565431480119",
+      "conditional_nonresonant_Jost_W_at_AS": "3.535207467021993226725319099900451039913"
+    },
+    {
+      "ell": 2,
+      "M": "1",
+      "M2Lambda": "0.11",
+      "nu_h": "100.1899090887366712340126182568696028541",
+      "nu_c": "108.2376883697047549591730706071287997558",
+      "nu_h_distance_to_nearest_integer": "0.1899090887366712340126183",
+      "nu_c_distance_to_nearest_integer": "0.2376883697047549591730706",
+      "conditional_nonresonant_Jost_W_at_AS": "3.848754012414211781886848572573798127337"
+    },
+    {
+      "ell": 3,
+      "M": "1",
+      "M2Lambda": "0.02",
+      "nu_h": "44.97230971323395915642285670661985029232",
+      "nu_c": "152.0075872379877090764702225853933307043",
+      "nu_h_distance_to_nearest_integer": "0.02769028676604084357714329",
+      "nu_c_distance_to_nearest_integer": "0.007587237987709076470222585",
+      "conditional_nonresonant_Jost_W_at_AS": "16.3234915962655315774717455040239345293"
+    },
+    {
+      "ell": 3,
+      "M": "1",
+      "M2Lambda": "0.04",
+      "nu_h": "51.9952875758447945570910552283927460776",
+      "nu_c": "124.4411176824823147267376113017063830821",
+      "nu_h_distance_to_nearest_integer": "0.004712424155205442908944772",
+      "nu_c_distance_to_nearest_integer": "0.4411176824823147267376113",
+      "conditional_nonresonant_Jost_W_at_AS": "16.86759537659157938239177309835266353125"
+    },
+    {
+      "ell": 3,
+      "M": "1",
+      "M2Lambda": "0.06",
+      "nu_h": "62.9543158212926585547425104653806682483",
+      "nu_c": "120.3429601463545825805509525967877741153",
+      "nu_h_distance_to_nearest_integer": "0.04568417870734144525748953",
+      "nu_c_distance_to_nearest_integer": "0.3429601463545825805509526",
+      "conditional_nonresonant_Jost_W_at_AS": "17.40040740531111656410836894876742668556"
+    },
+    {
+      "ell": 3,
+      "M": "1",
+      "M2Lambda": "0.08",
+      "nu_h": "83.55391920001488748174618547054430498079",
+      "nu_c": "132.0925954699673059460290812030729057508",
+      "nu_h_distance_to_nearest_integer": "0.4460807999851125182538145",
+      "nu_c_distance_to_nearest_integer": "0.0925954699673059460290812",
+      "conditional_nonresonant_Jost_W_at_AS": "17.99652405030471653272887937622482457843"
+    },
+    {
+      "ell": 3,
+      "M": "1",
+      "M2Lambda": "0.09",
+      "nu_h": "103.8615849503412518610561834624032347466",
+      "nu_c": "149.1595846502516280234100357059133549961",
+      "nu_h_distance_to_nearest_integer": "0.1384150496587481389438165",
+      "nu_c_distance_to_nearest_integer": "0.1595846502516280234100357",
+      "conditional_nonresonant_Jost_W_at_AS": "18.35423947996103728981336239616740756036"
+    },
+    {
+      "ell": 3,
+      "M": "1",
+      "M2Lambda": "0.10",
+      "nu_h": "147.9497894477593749996508230098726124497",
+      "nu_c": "190.5216443644112827157400596180154721525",
+      "nu_h_distance_to_nearest_integer": "0.05021055224062500034917699",
+      "nu_c_distance_to_nearest_integer": "0.4783556355887172842599404",
+      "conditional_nonresonant_Jost_W_at_AS": "18.80547523720722859804441681911860547351"
+    },
+    {
+      "ell": 3,
+      "M": "1",
+      "M2Lambda": "0.11",
+      "nu_h": "500.9495454436833561700630912843480142705",
+      "nu_c": "541.1884418485237747958653530356439987791",
+      "nu_h_distance_to_nearest_integer": "0.05045455631664382993690872",
+      "nu_c_distance_to_nearest_integer": "0.188441848523774795865353",
+      "conditional_nonresonant_Jost_W_at_AS": "19.61834688482042535434941998183498001144"
+    }
+  ],
+  "scope": {
+    "exact_solution": "Axial kernel (c+3M/r) exp(-k rstar), polar reciprocal kernel.",
+    "general_second_solution": "psi2=psiAS*integral(psiAS^(-2) drstar).",
+    "generic_classification": "For noninteger endpoint exponent differences, axial kernel is BH ingoing/cosmological incoming, and Wodd(-ik)=2k qc/qh is nonzero.",
+    "integer_index_exception": "At k/kappa_h or k/kappa_c integer, analytic continuation of the frequency-dependent Jost solutions is required. Leading exponent or kernel existence alone does not establish its classification.",
+    "numerical_eigenvectors": "Not supplied, constructed, or inferred in this verification."
+  }
+}

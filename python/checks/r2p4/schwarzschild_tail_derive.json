@@ -1,0 +1,18 @@
+{
+  "scope": "Exact asymptotic-tail derivation and comparison with actual numerical source; no new spectral solve.",
+  "coefficients": {
+    "c1": "-sqrt(2)*sqrt(rho)",
+    "c2": "2*rho - 3/4",
+    "c3": "sqrt(2)*(-16*L - 64*rho**2 + 80*rho - 3)/(64*sqrt(rho))",
+    "c4": "(16*L + 16*rho*(4*L - 4*eps - 16*rho + 5) + 3)/(128*rho)",
+    "c5": "sqrt(2)*(256*L**2 - 288*L + 128*rho**2*(16*L + 32*eps + 32*rho**2 + 48*rho - 79) + 224*rho*(16*L + 3) - 63)/(8192*rho**(3/2))"
+  },
+  "recurrence_residuals": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "coded_tail_residual": "0"
+}

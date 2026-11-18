@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# The run logs of the independent checks belong to their record
+!python/**/*.log

@@ -1,0 +1,14 @@
+{
+  "scope": "Exact independent derivation of the CF recurrence from the RW master ODE.\nNo spectral solve and no use of the uploaded Maple/Julia coefficients.\n",
+  "coefficient_residuals": [
+    "0",
+    "0",
+    "0"
+  ],
+  "residual_ode_polynomials": [
+    "z**3 - 2*z**2 + z",
+    "2*rho + z**2*(4*rho + 3) + z*(-8*rho - 4) + 1",
+    "-ell**2 - ell - 8*rho**2 - 4*rho + spin**2 + z*(4*rho**2 + 4*rho - spin**2 + 1) - 1"
+  ],
+  "sympy_version": "1.14.0"
+}

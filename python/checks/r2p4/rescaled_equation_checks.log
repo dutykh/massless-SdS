@@ -1,0 +1,25 @@
+scaled_metric PASS
+black_hole_phase PASS
+cosmological_phase PASS
+G_is_gH PASS
+cancellation_free_R PASS
+rescaled_second_derivative PASS
+rescaled_first_derivative PASS
+phase_linear_term PASS
+phase_quadratic_term PASS
+event_horizon_G PASS
+cosmological_horizon_G PASS
+scalar_rescaled_potential PASS
+scalar_Nariai_potential PASS
+em_rescaled_potential PASS
+em_Nariai_potential PASS
+odd_rescaled_potential PASS
+odd_Nariai_potential PASS
+Nariai_limit_g PASS
+Nariai_limit_gy PASS
+Nariai_limit_G PASS
+Nariai_limit_Gy PASS
+Nariai_limit_R PASS
+Nariai_limit_ph PASS
+Nariai_limit_pc PASS
+24/24 exact checks passed.

@@ -1,0 +1,298 @@
+{
+  "scope": "Exact source-level identities only; no Maple or spectral numerical execution.",
+  "sympy_version": "1.14.0",
+  "source_files": [
+    {
+      "file": "/workspace/scratch/d4bfd5e39ff8/code_review/extracted/Matrix_Assembler_s0_s1-Final Version.decoded.txt",
+      "sha256": "993bf1c97413c87550cac519203cc63ebdc17afec06ce4cc1c79b68609605752"
+    },
+    {
+      "file": "/workspace/scratch/d4bfd5e39ff8/code_review/extracted/Matrix_Assembler_s2odd-Final Version.decoded.txt",
+      "sha256": "0ce8c0200144a633b170adb3ff759162f0d06b798f87e36920fddf96fcf4d27a"
+    },
+    {
+      "file": "/workspace/scratch/d4bfd5e39ff8/code_review/extracted/Matrix_Assembler_s2even-Final Version.decoded.txt",
+      "sha256": "e03255d18135b88a54ea5fbc962daa311deb55a109d9dde16407839547034c3c"
+    },
+    {
+      "file": "/workspace/scratch/d4bfd5e39ff8/code_review/extracted/Matrix_Assembler_all_s_Nariai-Final Version.decoded.txt",
+      "sha256": "cf8fa0974e065580bebeea2a7cf23f69013303b859da0b33af03dff5dfa1ebcf"
+    }
+  ],
+  "passed": 45,
+  "total": 45,
+  "coefficient_checks": 36,
+  "metric_and_derivative_checks": 9,
+  "checks": [
+    {
+      "sector": "s0_s1",
+      "check": "L00",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L01",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L02",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L10",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L11",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L12",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L20",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L21",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "L22",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "f_y_factorization",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "fp_y_derivative",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s0_s1",
+      "check": "f_y_equals_original_SdS",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L00",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L01",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L02",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L10",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L11",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L12",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L20",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L21",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "L22",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "f_y_factorization",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "fp_y_derivative",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2odd",
+      "check": "f_y_equals_original_SdS",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L00",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L01",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L02",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L10",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L11",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L12",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L20",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L21",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "L22",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "f_y_factorization",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "fp_y_derivative",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "s2even",
+      "check": "f_y_equals_original_SdS",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L00",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L01",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L02",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L10",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L11",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L12",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L20",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L21",
+      "passed": true,
+      "exact_residual": "0"
+    },
+    {
+      "sector": "Nariai",
+      "check": "L22",
+      "passed": true,
+      "exact_residual": "0"
+    }
+  ]
+}

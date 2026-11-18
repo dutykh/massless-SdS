@@ -20,8 +20,8 @@ authors:
     orcid: "https://orcid.org/0000-0001-5247-2788"
 repository-code: "https://github.com/dutykh/massless-SdS"
 license: LGPL-2.1-only
-version: 1.0.0
-date-released: "2026-11-14"
+version: 1.1.0
+date-released: "2026-11-18"
 keywords:
   - black-holes
   - quasinormal-modes
@@ -34,11 +34,15 @@ keywords:
   - julia
   - matlab
   - mathematica
+  - python
   - reproducible-research
 abstract: >-
-  Maple worksheets, MATLAB and Julia solvers, Mathematica notebooks and data for the quasinormal modes of massless
-  scalar, electromagnetic and gravitational perturbations of Schwarzschild–de Sitter black holes, for dimensionless
-  cosmological constants between 0.02 and 0.11, and of their Nariai limit. After the behaviour at the event and
-  cosmological horizons is factored out, a Chebyshev collocation turns the radial problem into a quadratic eigenvalue
-  problem, and only the roots on which three resolutions agree are kept; in the Nariai limit the computed frequencies
-  are compared with the exact Pöschl–Teller spectrum.
+  Maple worksheets, MATLAB and Julia solvers, Mathematica notebooks, Python programs and data for the quasinormal modes
+  of massless scalar, electromagnetic and gravitational perturbations of Schwarzschild–de Sitter black holes, for
+  dimensionless cosmological constants between 0.02 and 0.11, and of their Nariai limit. After the behaviour at the
+  event and cosmological horizons is factored out, a Chebyshev collocation turns the radial problem into a quadratic
+  eigenvalue problem, and only the roots on which three resolutions agree are kept; in the Nariai limit a root is kept
+  when the Jost Wronskian of the Pöschl–Teller problem vanishes there. Independent Python programs follow oscillatory
+  and purely imaginary branches towards the Nariai limit by collocation and by Frobenius matching at the two horizons,
+  test convergence up to 300 Chebyshev modes in double and 70-digit arithmetic, compare the axial and polar spectra,
+  compute the Schwarzschild modes by Leaver's continued fraction and verify the algebra exactly.

@@ -1,0 +1,11 @@
+Exact source-level endpoint identities only; no Maple/Julia execution or spectral recomputation.
+zc>1, with physical horizon relations imposed exactly before limits.
+s0_s1: PASS roots grid, 18 raw endpoint zeros, 18 finite quotient limits, 18 derivative-limit identities.
+s0_s1: PASS reduced L02 vanishes, reduced L01 is nonzero at both endpoints (generic first-order row).
+s2odd: PASS roots grid, 18 raw endpoint zeros, 18 finite quotient limits, 18 derivative-limit identities.
+s2odd: PASS reduced L02 vanishes, reduced L01 is nonzero at both endpoints (generic first-order row).
+s2even: PASS roots grid, 18 raw endpoint zeros, 18 finite quotient limits, 18 derivative-limit identities.
+s2even: PASS reduced L02 vanishes, reduced L01 is nonzero at both endpoints (generic first-order row).
+PASS: all exact endpoint tests. No code or manuscript was modified.
+Limit-row rule: Lbar_ij(sigma) = -dL_ij/dy(sigma)/(2 sigma), sigma = +/-1, after exact horizon identities.
+QNM branch admissibility is a separate question and is not established by these endpoint equations.

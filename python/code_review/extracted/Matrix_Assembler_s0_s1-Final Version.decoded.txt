@@ -1,0 +1,141 @@
+===== Group 0 Input Equation 0 =====
+restart:
+with(LinearAlgebra):
+
+ p := 50:
+
+if kernelopts(maxdigits) < p then
+    error "kernelopts(maxdigits)=%1 < requested p=%2",
+          kernelopts(maxdigits), p;
+end if:
+
+Digits := p:
+
+ s := 1:
+L := 2:
+
+Lambda0 := 11/100:
+Lambda := evalf(Lambda0):
+
+epsilon := -s^2 + 1:
+
+alpha := arccos(3*sqrt(Lambda)):
+xh := cos((Pi + alpha)/3)/sqrt(Lambda):
+xc := cos((Pi - alpha)/3)/sqrt(Lambda):
+zc := xc/xh:
+
+alphah := 2*xh^2/(3 - 2*xh):
+alphac := 2*xc^2/(3 - 2*xc):
+ 
+ z0:=-(1+zc):
+ f := y -> 1/3*Lambda*xh^2*(zc - 1)^2*(1 - y^2)*(y + (zc + 1 - 2*z0)/(zc - 1))/(y + (zc + 1)/(zc - 1)):
+
+ fp := y -> -2*Lambda*xh^2*(zc - 1)^2*y*(y + (zc + 1 - 2*z0)/(zc - 1))/(3*y + 3*(zc + 1)/(zc - 1)) + Lambda*xh^2*(zc - 1)^2*(1 - y^2)/(3*y + 3*(zc + 1)/(zc - 1)) - 1/3*Lambda*xh^2*(zc - 1)^2*(1 - y^2)*(y + (zc + 1 - 2*z0)/(zc - 1))/(y + (zc + 1)/(zc - 1))^2:
+
+ V := y -> 4*f(y)*(L*(L + 1)/(y + (zc + 1)/(zc - 1)) + epsilon*fp(y))/((zc - 1)^2*(y + (zc + 1)/(zc - 1))):
+
+ outdir := "C:/Users/david/Documents/MAPLEFILESOLDPC/SPECTRAL DENYS/06-Nonextreme SdS":
+datadir := cat(outdir, "/data"):
+
+if not FileTools:-Exists(datadir) then
+    FileTools:-MakeDirectory(datadir, 'recurse' = true):
+end if:
+
+if not FileTools:-Exists(datadir) then
+    error "Output directory was not created: %1", datadir:
+end if:
+
+if not FileTools:-IsDirectory(datadir) then
+    error "Output path exists but is not a directory: %1", datadir:
+end if:
+
+if not FileTools:-IsWritable(datadir) then
+    error "Cannot write to output directory: %1", datadir:
+end if:
+
+printf("Writing files to: %s\n", datadir):
+
+ L00:=y->-(zc - 1)^4*(-y^2 + 1)*Lambda*xh^2*(y + (zc + 1 - 2*z0)/(zc - 1))*(L*(L + 1)/(y + (zc + 1)/(zc - 1)) + epsilon*(-2*Lambda*xh^2*(zc - 1)^2*y*(y + (zc + 1 - 2*z0)/(zc - 1))/(3*(y + (zc + 1)/(zc - 1))) + Lambda*xh^2*(zc - 1)^2*(-y^2 + 1)/(3*(y + (zc + 1)/(zc - 1))) - Lambda*xh^2*(zc - 1)^2*(-y^2 + 1)*(y + (zc + 1 - 2*z0)/(zc - 1))/(3*(y + (zc + 1)/(zc - 1))^2)))/(12*(y + (zc + 1)/(zc - 1))^2):
+
+ L01:=y->Lambda^2*xh^4*(zc - 1)^6*(-y^2 + 1)*(y + (zc + 1 - 2*z0)/(zc - 1))*(2*z0*(-y^2 + 1)/((zc - 1)*(y + (zc + 1)/(zc - 1))) - 2*y*(y + (zc + 1 - 2*z0)/(zc - 1)))/(36*(y + (zc + 1)/(zc - 1))^2):
+
+ L02:=y->(zc - 1)^6*Lambda^2*xh^4*(-y^2 + 1)^2*(y + (zc + 1 - 2*z0)/(zc - 1))^2/(36*(y + (zc + 1)/(zc - 1))^2):
+
+ L10:=y->-1/(36*(y + (zc + 1)/(zc - 1))^2)*Lambda^2*xh^4*(zc - 1)^6*(y + (zc + 1 - 2*z0)/(zc - 1))*(((alphac - alphah)*y + alphac + alphah)*(2*z0*(-y^2 + 1)/((zc - 1)*(y + (zc + 1)/(zc - 1))) - 2*y*(y + (zc + 1 - 2*z0)/(zc - 1))) + (y + (zc + 1 - 2*z0)/(zc - 1))*((alphac - alphah)*y^2 + (2*alphac + 2*alphah)*y + alphac - alphah)):
+
+ L11:=y->-(zc - 1)^6*((alphac - alphah)*y + alphac + alphah)*Lambda^2*xh^4*(-y^2 + 1)*(y + (zc + 1 - 2*z0)/(zc - 1))^2/(18*(y + (zc + 1)/(zc - 1))^2):
+
+L12 := y -> 0:
+
+ L20:=y->xh^2*(zc - 1)^4/4 - Lambda^2*xh^4*(zc - 1)^6*(y + (zc + 1 - 2*z0)/(zc - 1))^2*((alphac - alphah)*y + alphac + alphah)^2/(36*(y + (zc + 1)/(zc - 1))^2):
+
+L21 := y -> 0:
+
+ 
+L22 := y -> 0:
+ 
+# With Lambda = 0.02, this gives filetag = 20.
+filetag := round(1000*Lambda0):
+
+x := 'x':
+
+ for n from 90 by 5 to 100 do
+
+    FFexpr := simplify(add(b[k]*ChebyshevT(k, x), k = 0 .. n - 1)):
+    DFFexpr := diff(FFexpr, x):
+    DDFFexpr := diff(FFexpr, x$2):
+
+    M0 := Matrix(n, n):
+    M1 := Matrix(n, n):
+    M2 := Matrix(n, n):
+
+    for i from 1 to n do
+
+        xi := evalf(cos((2*i - 1)*Pi/(2*n))):
+
+        FFval := eval(FFexpr, x = xi):
+        DFFval := eval(DFFexpr, x = xi):
+        DDFFval := eval(DDFFexpr, x = xi):
+
+        expr0 := expand(evalf(
+            L00(xi)*FFval + L01(xi)*DFFval + L02(xi)*DDFFval
+        )):
+
+        expr1 := expand(evalf(
+            L10(xi)*FFval + L11(xi)*DFFval + L12(xi)*DDFFval
+        )):
+
+        expr2 := expand(evalf(
+            L20(xi)*FFval + L21(xi)*DFFval + L22(xi)*DDFFval
+        )):
+
+        for j from 1 to n do
+            M0[i, j] := coeff(expr0, b[j - 1]):
+            M1[i, j] := coeff(expr1, b[j - 1]):
+            M2[i, j] := coeff(expr2, b[j - 1]):
+        end do:
+
+    end do:
+
+    matrixname := cat(datadir, sprintf("/M0-%d-%d.mat", n, filetag)):
+    ExportMatrix(matrixname, M0, target = MATLAB, mode = ascii):
+
+    matrixname := cat(datadir, sprintf("/M1-%d-%d.mat", n, filetag)):
+    ExportMatrix(matrixname, M1, target = MATLAB, mode = ascii):
+
+    matrixname := cat(datadir, sprintf("/M2-%d-%d.mat", n, filetag)):
+    ExportMatrix(matrixname, M2, target = MATLAB, mode = ascii):
+
+    printf("Exported matrices for n = %d\n", n):
+
+end do:
+
+===== Group 0 OutputText Equation 0 =====
+Writing files to: C:/Users/david/Documents/MAPLEFILESOLDPC/SPECTRAL DENYS/06-Nonextreme SdS/data
+Exported matrices for n = 90
+Exported matrices for n = 95
+Exported matrices for n = 100
+
+
+===== Group 1 Input Equation 0 =====
+ 

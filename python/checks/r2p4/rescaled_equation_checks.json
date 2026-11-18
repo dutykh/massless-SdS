@@ -1,0 +1,128 @@
+{
+  "scope": "Exact checks of the independently derived rescaled SdS collocation equation.\n\nUses q=xc/xh>1 to impose all physical horizon identities exactly.  No numerical\nspectral data or manuscript coefficient formulas are used.\n",
+  "sympy": "1.14.0",
+  "passed": 24,
+  "total": 24,
+  "checks": [
+    {
+      "name": "scaled_metric",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "black_hole_phase",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "cosmological_phase",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "G_is_gH",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "cancellation_free_R",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "rescaled_second_derivative",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "rescaled_first_derivative",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "phase_linear_term",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "phase_quadratic_term",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "event_horizon_G",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "cosmological_horizon_G",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "scalar_rescaled_potential",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "scalar_Nariai_potential",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "em_rescaled_potential",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "em_Nariai_potential",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "odd_rescaled_potential",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "odd_Nariai_potential",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "Nariai_limit_g",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "Nariai_limit_gy",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "Nariai_limit_G",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "Nariai_limit_Gy",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "Nariai_limit_R",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "Nariai_limit_ph",
+      "residual": "0",
+      "passed": true
+    },
+    {
+      "name": "Nariai_limit_pc",
+      "residual": "0",
+      "passed": true
+    }
+  ]
+}

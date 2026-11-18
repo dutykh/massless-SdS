@@ -1,0 +1,25 @@
+scalar, N=40: 73 continuation points; largest step 0.0108
+scalar, N=60: 73 continuation points; largest step 0.0108
+scalar, N=80: 73 continuation points; largest step 0.0108
+scalar, N=100: 73 continuation points; largest step 0.0108
+em, N=40: 73 continuation points; largest step 0.00905
+em, N=60: 73 continuation points; largest step 0.00905
+em, N=80: 73 continuation points; largest step 0.00905
+em, N=100: 73 continuation points; largest step 0.00905
+odd, N=40: 73 continuation points; largest step 0.00741
+odd, N=60: 73 continuation points; largest step 0.00741
+odd, N=80: 73 continuation points; largest step 0.00741
+odd, N=100: 73 continuation points; largest step 0.00741
+{
+  "passed": 438,
+  "total": 438,
+  "maxima": {
+    "max_resolution_spread": 8.834584839430597e-12,
+    "max_offgrid_residual": 2.4014112792053013e-09,
+    "max_endpoint_residual": 2.4014112792053013e-09,
+    "max_pencil_residual": 2.1373153307996913e-16,
+    "max_tail_fraction": 2.4044973426439425e-16
+  },
+  "max_continuation_step": 0.010794084464747127,
+  "minimum_candidate_separation": 1.000002806754505
+}
